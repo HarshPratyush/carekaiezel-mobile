@@ -1,0 +1,55 @@
+page-login {
+
+  ion-content{
+    background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  }
+
+ion-input{
+  border: 1px solid;
+  border-radius: 4px;
+  background-color:white; 
+}
+
+.login{
+  margin-top: 5em;
+  height: 100%;
+}
+
+.name-company{
+  text-align: center;
+  margin: 2em;
+}
+.new-user{
+  text-align: center;
+  margin: 2em;
+  text-decoration: underline;;
+  cursor:pointer;
+}
+
+// .label{
+//   margin-bottom:0.8em
+// }
+
+ion-icon{
+  font-size: 9em;
+}
+
+ion-gird{
+  height: 100% ;
+}
+
+.login-button{
+  min-width: 100%;
+  margin-top: 1.18em;
+}
+
+.home-img{
+  background: url('../assets/imgs/lift-home-blank.jpg')
+}
+
+.build-icon
+{
+  // margin-top: 5.8em;
+  transform: rotate(90deg);
+}
+}

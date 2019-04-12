@@ -1,0 +1,7 @@
+{
+  "name": "carekaiezel",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
