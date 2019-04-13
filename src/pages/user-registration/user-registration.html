@@ -14,48 +14,58 @@
 
   <ion-grid>
 
+      <ion-item class="selection">
+      
+          <ion-label>Register As</ion-label>
+        <ion-select type="text" [(ngModel)]="newUser.roleId" interface="popover">
+          <ion-option *ngFor="let role of userRoles" [value]="role.roleId">{{role.roleName}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-grid class="data">
       <div class="label">
       <span >First Name</span>
     </div>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" [(ngModel)]="newUser.firstName" placeholder=""></ion-input>
 
       <div class="label">
       <span >Middle Name</span>
     </div>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" [(ngModel)]="newUser.middleName" placeholder=""></ion-input>
        
 
         <div class="label">
       <span >Last Name</span>
     </div>
-    <ion-input type="email" placeholder=""></ion-input>
+    <ion-input type="text" [(ngModel)]="newUser.lastName" placeholder=""></ion-input>
 
       <div class="label">
       <span >Contact No. </span>
     </div>
 
-      <ion-input type="tel" placeholder="9999999999"></ion-input>
+      <ion-input type="tel" [(ngModel)]="newUser.contactNo" placeholder="9999999999"></ion-input>
 
       <div class="label">
       <span >Email</span>
     </div>
 
-      <ion-input type="email" placeholder="user@example.com"></ion-input>
+      <ion-input type="email" [(ngModel)]="newUser.emailId" placeholder="user@example.com"></ion-input>
     
     <div class="label">
       <span >Password</span>
     </div>
 
-      <ion-input type="password"></ion-input>
+      <ion-input type="password"v [(ngModel)]="newUser.password"></ion-input>
 
     <div class="label">
-      <span class="label">New Password</span>
+      <span class="label">Confirm Password</span>
     </div>
 
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="newUser.confirmPassword"></ion-input>
 
-      <button ion-button color="dark-light" class="login-button">Sign Up</button>
-
+      <button ion-button color="dark-light" class="login-button" >Sign Up</button>
+    </ion-grid>
   </ion-grid>
 
 </ion-content>

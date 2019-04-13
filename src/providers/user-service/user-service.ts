@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ConstantsServiceProvider } from '../constants-service/constants-service';
 
 /*
   Generated class for the UserServiceProvider provider.
@@ -10,8 +11,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserServiceProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello UserServiceProvider Provider');
+  constructor(public http: HttpClient,private constants:ConstantsServiceProvider) {
+  }
+
+
+  async getUserRoles(){
+    return await this.http.get(this.constants.API_GATEWAY+this.constants.USER_ROLES_URL).toPromise() as UserRoles[];
   }
 
 }

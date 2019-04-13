@@ -1,0 +1,10 @@
+[
+    {
+        "roleName":"Customer",
+        "roleId":1
+    },
+    {
+        "roleName":"Mechanic",
+        "roleId":2
+    }
+]
