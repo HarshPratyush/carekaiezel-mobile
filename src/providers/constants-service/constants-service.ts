@@ -17,4 +17,16 @@ export class ConstantsServiceProvider {
 
   public get USER_ROLES_URL(){return 'userRoles-dummy.json'};
 
+  public get SIGNUP_URL(){return 'userRoles-dummy.json'};
+
+  public get LOGIN_URL(){return 'oauth/token'};
+
+  public get USER_DATA(){return 'user-details.json'};
+
+  public get ACESS_TOKEN(){return 'kaizel_acess_token'};
+
+  public get REFRESH_TOKEN(){return 'kaizel_refresh_token'};
+
+  public get USER_DETAILS(){return 'kaizel_user_details'};
+
 }

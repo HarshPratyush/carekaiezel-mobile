@@ -1,0 +1,68 @@
+{
+    "designationIds": [
+        2
+    ],
+    "user_name": "ker_12002",
+    "emailId": null,
+    "sessionMap": {
+        "landing": "ccihome",
+        "user_name": "Balika Bhavan",
+        "cci": {
+            "areaId": 1322,
+            "areaCode": "IND03212002",
+            "areaName": "Balika Bhavan",
+            "parentArea": {
+                "areaId": 682,
+                "areaCode": "IND03212",
+                "areaName": "Pathanamthitta",
+                "parentArea": {
+                    "areaId": 670,
+                    "areaCode": "IND032",
+                    "areaName": "Kerala",
+                    "parentArea": {
+                        "areaId": 1,
+                        "areaCode": "IND",
+                        "areaName": "India",
+                        "parentArea": null,
+                        "areaLevel": {
+                            "areaLevelId": 1,
+                            "areaLevelName": "Country",
+                            "order": 1,
+                            "live": true
+                        },
+                        "live": true
+                    },
+                    "areaLevel": {
+                        "areaLevelId": 2,
+                        "areaLevelName": "State",
+                        "order": 2,
+                        "live": true
+                    },
+                    "live": true
+                },
+                "areaLevel": {
+                    "areaLevelId": 3,
+                    "areaLevelName": "District",
+                    "order": 3,
+                    "live": true
+                },
+                "live": true
+            },
+            "areaLevel": {
+                "areaLevelId": 4,
+                "areaLevelName": "CCI",
+                "order": 4,
+                "live": true
+            },
+            "live": true
+        }
+    },
+    "userId": 577,
+    "designationNames": [
+        "Customer"
+    ],
+    "authorities": [
+        "dataentry"
+    ],
+    "jti": "84a78330-9ea7-43b8-870b-f5cf384cb6bf"
+}

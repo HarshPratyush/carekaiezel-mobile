@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ConstantsServiceProvider } from '../../providers/constants-service/constants-service';
 
 /**
  * Generated class for the HomePage page.
@@ -15,11 +16,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public constantsService:ConstantsServiceProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+  }
+
+  ngOnInit(){
+    if(localStorage.getItem(this.constantsService.USER_DETAILS)==null)
+    {
+      this.navCtrl.setRoot('LoginPage');
+    }
   }
 
 }

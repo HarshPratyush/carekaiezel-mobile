@@ -22,10 +22,10 @@
   <span class="name-company"><h2>Care Kaizel</h2></span>
 </div>
     <span class="label">Email</span>
-  <ion-input type="email" placeholder="user@example.com"></ion-input>
+  <ion-input type="email" [(ngModel)]="loginData.email" placeholder="user@example.com"></ion-input>
 
   <span class="label">Password</span>
-  <ion-input type="password"></ion-input>
+  <ion-input type="password" [(ngModel)]="loginData.password" ></ion-input>
 
   <button ion-button color="dark-light" class="login-button" (click)="login()"> Login</button>
 </div>

@@ -17,6 +17,7 @@ import { NewUserModel } from '../../models/newUserModel';
 })
 export class UserRegistrationPage {
 
+  // signupForm:FormGroup;
   userRoles:UserRoles[]=[];
   newUser:NewUserModel = new NewUserModel();
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService:UserServiceProvider) {
@@ -27,6 +28,12 @@ export class UserRegistrationPage {
 
   ngOnInit()
   {
+    // this.signupForm=new FormGroup({
+    //   firstName: new FormControl('',Validators.required),
+    //   lastName: new FormControl('',Validators.required),
+    //   email: new FormControl('',Validators.required,Validators. EmailValidator)
+
+    // })
 
     this.getRoles();
   }
@@ -36,4 +43,10 @@ export class UserRegistrationPage {
     this.userRoles = await this.userService.getUserRoles();
   }
 
+  async signUp()
+  {
+    await this.userService.signup(this.newUser);
+
+    this.navCtrl.setRoot('LoginPage');
+  }
 }
