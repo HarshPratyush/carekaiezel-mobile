@@ -29,4 +29,6 @@ export class ConstantsServiceProvider {
 
   public get USER_DETAILS(){return 'kaizel_user_details'};
 
+  public get UPDATE_USER() {return '';}
+
 }

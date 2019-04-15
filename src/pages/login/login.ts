@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
+import { UtilServiceProvider } from '../../providers/util-service/util-service';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,7 +22,7 @@ export class LoginPage {
     password:''
   }
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService:
-    UserServiceProvider) {
+    UserServiceProvider,private utilService:UtilServiceProvider) {
   }
 
   ionViewDidLoad() {
@@ -34,6 +35,8 @@ export class LoginPage {
   async login()
   {
     await this.userService.login(this.loginData);
+    this.utilService.setUserDetails();
+    this.utilService.setMenu();
     this.navCtrl.setRoot('HomePage')
   }
 }

@@ -9,6 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserServiceProvider } from '../providers/user-service/user-service';
 import { ConstantsServiceProvider } from '../providers/constants-service/constants-service';
 import { HttpClientModule } from '@angular/common/http';
+import { UtilServiceProvider } from '../providers/util-service/util-service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserServiceProvider,
     ConstantsServiceProvider,
+    UtilServiceProvider,
   ]
 })
 export class AppModule {}

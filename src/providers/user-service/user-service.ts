@@ -42,4 +42,11 @@ export class UserServiceProvider {
     localStorage.setItem(this.constants.USER_DETAILS,JSON.stringify(userDetails));
     }
 
+
+    async update(userProfile:ProfieModel)
+    {
+      // to be uncommented
+     // let response = await this.http.post(this.constants.API_GATEWAY+this.constants.UPDATE_USER,userProfile).toPromise();
+    }
+
 }
