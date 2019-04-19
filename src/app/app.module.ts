@@ -10,6 +10,7 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
 import { ConstantsServiceProvider } from '../providers/constants-service/constants-service';
 import { HttpClientModule } from '@angular/common/http';
 import { UtilServiceProvider } from '../providers/util-service/util-service';
+import { ComplainStatusProvider } from '../providers/complain-status/complain-status';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { UtilServiceProvider } from '../providers/util-service/util-service';
     UserServiceProvider,
     ConstantsServiceProvider,
     UtilServiceProvider,
+    ComplainStatusProvider,
   ]
 })
 export class AppModule {}

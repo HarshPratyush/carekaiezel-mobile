@@ -29,6 +29,8 @@ export class ConstantsServiceProvider {
 
   public get USER_DETAILS(){return 'kaizel_user_details'};
 
-  public get UPDATE_USER() {return '';}
+  public get UPDATE_USER() {return ''};
+
+  public get GET_USER_COMPLAIN_STATUS(){return 'complain-status.json'};
 
 }

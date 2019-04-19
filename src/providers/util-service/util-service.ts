@@ -37,7 +37,7 @@ export class UtilServiceProvider {
           { title: 'Register Complain', component: 'HomePage' },
           { title: 'Direct Complain', component: 'HomePage' },
           { title: 'Manage Profile', component: 'UserProfilePage' },
-          { title: 'Track Com[plain', component: 'HomePage' },
+          { title: 'Track Complain', component: 'ComplainStatusPage' },
           { title: 'Upload Image', component: 'HomePage' },
         ];
       }
