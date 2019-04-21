@@ -24,7 +24,7 @@
         <h2>Complain Id: {{complain.complainId}}</h2>
         <p>Status : {{complain.status}} </p>
         <p>Registered On :{{complain.registerationDate}}</p>
-        <button ion-button clear item-end>View</button>
+        <button ion-button clear item-end (click)="viewDetails(complain)">View</button>
       </ion-item>
     </ion-list>
   </ion-grid>

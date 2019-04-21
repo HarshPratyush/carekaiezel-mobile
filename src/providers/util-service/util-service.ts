@@ -34,21 +34,17 @@ export class UtilServiceProvider {
         this.menu = [
           { title: 'Home', component: 'HomePage' },
           { title: 'Reach Us', component: 'HomePage' },
-          { title: 'Register Complain', component: 'HomePage' },
-          { title: 'Direct Complain', component: 'HomePage' },
           { title: 'Manage Profile', component: 'UserProfilePage' },
           { title: 'Track Complain', component: 'ComplainStatusPage' },
-          { title: 'Upload Image', component: 'HomePage' },
         ];
       }
     
     else{
         this.menu = [
           { title: 'Home', component: 'HomePage' },
+          { title: 'Reach Us', component: 'HomePage' },
           { title: 'Manage Profile', component: 'UserProfilePage' },
-          { title: 'Complain Assignment', component: 'HomePage' },
-          { title: 'Update Complain Status', component: 'HomePage' },
-          { title: 'Image Upload', component: 'HomePage' },
+          { title: 'My Assignment', component: 'AssignedComplaintPage' }
         ];
       }
 

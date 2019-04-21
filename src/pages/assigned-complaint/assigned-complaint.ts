@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the ComplainDetailsPage page.
+ * Generated class for the AssignedComplaintPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,12 +10,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-complain-details',
-  templateUrl: 'complain-details.html',
+  selector: 'page-assigned-complaint',
+  templateUrl: 'assigned-complaint.html',
 })
-export class ComplainDetailsPage {
-
-  complainStatus:ComplainStatus
+export class AssignedComplaintPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -23,11 +21,4 @@ export class ComplainDetailsPage {
   ionViewDidLoad() {
   }
 
-  ngOnInit()
-  {
-    if(this.navParams.data && this.navParams.data.id)
-    this.complainStatus=this.navParams.data;
-    else
-    this.navCtrl.setRoot('ComplainStatusPage')
-  }
 }

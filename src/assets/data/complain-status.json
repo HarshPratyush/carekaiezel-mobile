@@ -23,7 +23,8 @@
         "resolvedDate":"22/03/2018",
         "remarksByMechanic":"Motor needs to be changed.",
         "breakDownFrom":"18/03/2018",
-        "amountCharged":0
+        "amountCharged":0,
+        "mechanicContactNumber":"7684878916"
     },
     {
         "id":3,
@@ -36,6 +37,7 @@
         "resolvedDate":null,
         "remarksByMechanic":null,
         "breakDownFrom":"12/03/2018",
-        "amountCharged":null
+        "amountCharged":null,
+        "mechanicContactNumber":"7684876516"
     }
 ]

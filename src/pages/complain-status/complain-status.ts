@@ -32,6 +32,11 @@ export class ComplainStatusPage {
     this.complainsStaus = await this.complainsStatusProvider.getComplainStatus();
   }
 
+  viewDetails(complainStatus:ComplainStatus)
+  {
+    this.navCtrl.push('ComplainDetailsPage',complainStatus)
+  }
+
 
 
 }
