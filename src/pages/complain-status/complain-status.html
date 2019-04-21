@@ -17,14 +17,14 @@
 
   <ion-grid>
     <ion-list>
-      <ion-item text-wrap *ngFor="let complain of complainsStaus ">
+      <ion-item text-wrap *ngFor="let complain of complainsStaus "  (click)="viewDetails(complain)">
         <ion-thumbnail item-start>
           <img src="assets/imgs/lift-home.png">
         </ion-thumbnail>
         <h2>Complain Id: {{complain.complainId}}</h2>
         <p>Status : {{complain.status}} </p>
         <p>Registered On :{{complain.registerationDate}}</p>
-        <button ion-button clear item-end (click)="viewDetails(complain)">View</button>
+        <button ion-button clear item-end>View</button>
       </ion-item>
     </ion-list>
   </ion-grid>
