@@ -1,0 +1,53 @@
+<!--
+  Generated template for the RegisterComplaintPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header color="primary">
+  <ion-navbar color="primary">
+    <ion-title>New Complaint</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-item class="no-border">
+    <ion-thumbnail (click)="imageClicked()" item-start>
+        <img [src]="'assets/imgs/photo.png'">
+      </ion-thumbnail>
+    </ion-item>
+<ion-list>
+<ion-item>
+  <ion-label  stacked>Break Down From</ion-label>
+  <ion-input type="text" (click)="openCalendarBreakDownDate()" readonly [(ngModel)]="complaintSubmissionModel.breakDownFrom">
+  </ion-input>
+  <ion-icon name="calendar"  item-end large></ion-icon>
+</ion-item>
+
+<ion-item>
+  <ion-label  stacked>Description</ion-label>
+  <ion-textarea type="textarea" [(ngModel)]="complaintSubmissionModel.description"></ion-textarea>
+</ion-item>
+
+<ion-item>
+  <ion-label  stacked>Adress</ion-label>
+  <ion-textarea type="textarea" [(ngModel)]="complaintSubmissionModel.adress"></ion-textarea>
+</ion-item>
+
+<ion-item>
+  <p>Drop Location</p>
+  <div id="map"></div>
+</ion-item>
+
+</ion-list>
+</ion-grid>
+
+
+</ion-content>
+
+
+<ion-footer>
+<button ion-button block >Update</button>
+</ion-footer>

@@ -37,6 +37,11 @@ export class ComplainStatusPage {
     this.navCtrl.push('ComplainDetailsPage',complainStatus)
   }
 
+  addNewComplaint()
+  {
+    this.navCtrl.push('RegisterComplaintPage');
+  }
+
 
 
 }
