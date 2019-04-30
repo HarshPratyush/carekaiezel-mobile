@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { UtilServiceProvider } from '../providers/util-service/util-service';
 import { ComplainStatusProvider } from '../providers/complain-status/complain-status';
 import { CallNumber } from '@ionic-native/call-number';
-import { DatePicker } from '@ionic-native/date-picker';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,6 @@ import { DatePicker } from '@ionic-native/date-picker';
     UtilServiceProvider,
     ComplainStatusProvider,
     CallNumber,
-    DatePicker
     
   ]
 })

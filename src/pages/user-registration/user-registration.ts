@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { NewUserModel } from '../../models/newUserModel';
+import { UtilServiceProvider } from '../../providers/util-service/util-service';
 
 /**
  * Generated class for the UserRegistrationPage page.
@@ -17,10 +18,13 @@ import { NewUserModel } from '../../models/newUserModel';
 })
 export class UserRegistrationPage {
 
-  // signupForm:FormGroup;
+
   userRoles:UserRoles[]=[];
   newUser:NewUserModel = new NewUserModel();
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userService:UserServiceProvider) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userService:UserServiceProvider,private utilService:UtilServiceProvider) {
+
+  
   }
 
   ionViewDidLoad() {
@@ -28,12 +32,6 @@ export class UserRegistrationPage {
 
   ngOnInit()
   {
-    // this.signupForm=new FormGroup({
-    //   firstName: new FormControl('',Validators.required),
-    //   lastName: new FormControl('',Validators.required),
-    //   email: new FormControl('',Validators.required,Validators. EmailValidator)
-
-    // })
 
     this.getRoles();
   }
@@ -45,8 +43,67 @@ export class UserRegistrationPage {
 
   async signUp()
   {
+    let mobileNumRegex = new RegExp(/^([0-9]{10,11})$/);
+    let emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    if(!this.newUser.roleId)
+    {
+      this.utilService.showToast('Select User Type')
+    }
+
+    else if(!this.newUser.firstName)
+    {
+      this.utilService.showToast('Provide First Name')
+    }
+
+    else if(!this.newUser.lastName)
+    {
+      this.utilService.showToast('Provide Last Name')
+    }
+
+
+    else if(!this.newUser.contactNo )
+    {
+      this.utilService.showToast('Provide Contact No.')
+    }
+
+    else if(!mobileNumRegex.test(this.newUser.contactNo))
+    {
+      this.utilService.showToast('Provide Valid Contact No.')
+    }
+
+    else if(!this.newUser.emailId )
+    {
+      this.utilService.showToast('Provide Email Id')
+    }
+
+    else if(!emailRegex.test(this.newUser.emailId))
+    {
+      this.utilService.showToast('Provide Valid Email Id.') 
+    }
+
+    else if(!this.newUser.password)
+    {
+      this.utilService.showToast('Provide Password')
+    }
+    else if(!this.newUser.password.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/))
+    {
+      this.utilService.showToast('Provide valid Password of atleast 7 charcter Ex:- abcd@132&')
+    }
+    else if(!this.newUser.confirmPassword)
+    {
+      this.utilService.showToast('Provide Confirm Password')
+    }
+
+    else if(this.newUser.password!=this.newUser.confirmPassword)
+    {
+      this.utilService.showToast('Password And confirm password is not matching')
+    }
+
+    else
+{
     await this.userService.signup(this.newUser);
 
     this.navCtrl.setRoot('LoginPage');
+}
   }
 }

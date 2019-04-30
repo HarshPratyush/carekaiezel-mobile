@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ActionSheet } from 'ionic-angular';
-import { DatePicker } from '@ionic-native/date-picker';
 import LocationPicker from "location-picker";
 /**
  * Generated class for the RegisterComplaintPage page.
@@ -25,16 +24,18 @@ export class RegisterComplaintPage {
     latitude:0,
     longitutde:0,
   };
+  currentDate:string;
   locationPicker: LocationPicker;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private actionSheetCtrl: ActionSheetController,private datePicker: DatePicker) {
+    private actionSheetCtrl: ActionSheetController) {
+      this.currentDate=new Date().toISOString()
+      console.log(this.currentDate)
       setTimeout(() => {
         this.intializePicker();
     }, 2000);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterComplaintPage');
   }
 
   intializePicker() {
@@ -56,21 +57,6 @@ export class RegisterComplaintPage {
 
     });
 }
-
-
-  openCalendarBreakDownDate()
-  {
-    this.datePicker.show({
-      date: new Date(),
-      mode: 'date',
-      maxDate:new Date(),
-      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
-    }).then(
-      date => this.complaintSubmissionModel.breakDownFrom=date,
-      err => console.log('Error occurred while getting date: ', err)
-    );
-  }
-
 
   imageClicked()
   {

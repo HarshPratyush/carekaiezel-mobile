@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConstantsServiceProvider } from '../constants-service/constants-service';
+import { ToastController } from 'ionic-angular';
 
 /*
   Generated class for the UtilServiceProvider provider.
@@ -13,7 +14,7 @@ export class UtilServiceProvider {
 
   private userDetails:UserDetails;
   private menu: Array<{title: string, component: any}>;
-  constructor(public http: HttpClient,private constantsService:ConstantsServiceProvider) {
+  constructor(public http: HttpClient,private constantsService:ConstantsServiceProvider,private toast:ToastController) {
   }
 
   setUserDetails()
@@ -52,6 +53,17 @@ export class UtilServiceProvider {
   getMenu()
   {
       return this.menu;
+  }
+
+  showToast(message){
+    
+   let toastShow = this.toast.create({
+     message:message,
+     duration:3000,
+     closeButtonText:'Ok',
+     showCloseButton:true
+   });
+   toastShow.present();
   }
 
 }

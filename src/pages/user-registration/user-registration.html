@@ -56,7 +56,7 @@
       <span >Password</span>
     </div>
 
-      <ion-input type="password"v [(ngModel)]="newUser.password"></ion-input>
+      <ion-input type="password" maxLength="15" [(ngModel)]="newUser.password"></ion-input>
 
     <div class="label">
       <span class="label">Confirm Password</span>
@@ -64,8 +64,12 @@
 
       <ion-input type="text" [(ngModel)]="newUser.confirmPassword"></ion-input>
 
-      <button ion-button color="dark-light" class="login-button" (click)="signUp()" >Sign Up</button>
+
     </ion-grid>
   </ion-grid>
 
 </ion-content>
+
+<ion-footer>
+  <button ion-button color="dark-light" class="login-button" (click)="signUp()" >Sign Up</button>
+</ion-footer>
