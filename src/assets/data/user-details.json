@@ -1,6 +1,6 @@
 {
     "designationIds": [
-        1
+        2
     ],
     "user_name": "ker_12002",
     "emailId": null,
@@ -15,7 +15,7 @@
     },
     "userId": 577,
     "designationNames": [
-        "Customer"
+        "Mechanic"
     ],
     "authorities": [
         "dataentry"

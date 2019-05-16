@@ -10,5 +10,12 @@ interface ComplainStatus{
     remarksByMechanic:string,
     breakDownFrom:string,
     amountCharged:number,
-    mechanicContactNumber:number
+    mechanicContactNumber:number,
+    //for mechanic page
+    customerContactNumber:number,
+    customerName:string,
+    latitude:string,
+    longitutde:string,
+    assignedDate:string,
+
 }

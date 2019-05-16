@@ -33,4 +33,6 @@ export class ConstantsServiceProvider {
 
   public get GET_USER_COMPLAIN_STATUS(){return 'complain-status.json'};
 
+  public get GET_MECHANIC_COMPLAIN_STATUS(){return 'mechanic-complaint-status.json'}
+
 }

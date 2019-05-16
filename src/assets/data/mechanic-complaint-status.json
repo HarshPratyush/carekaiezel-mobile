@@ -1,0 +1,41 @@
+[
+
+    {
+        "id":2,
+        "complainId":"kaizel-002",
+        "imageId":4,
+        "registerationDate":"18/03/2018",
+        "description":"Alarm Broking",
+        "status":"Resolved",
+        "assignedTo":"Rohit Patnaik",
+        "resolvedDate":"22/03/2018",
+        "remarksByMechanic":"Motor needs to be changed.",
+        "breakDownFrom":"18/03/2018",
+        "amountCharged":0,
+        "mechanicContactNumber":"7684878916",
+        "customerContactNumber":"8984218571",
+        "customerName":"Harsh Pratyush",
+        "latitude":"80.520",
+        "longitutde":"20.00",
+        "assignedDate":"19/03/2018"
+    },
+    {
+        "id":3,
+        "complainId":"kaizel-003",
+        "imageId":5,
+        "registerationDate":"15/03/2018",
+        "description":"Switch Not working",
+        "status":"Pending",
+        "assignedTo":"Rohit Patnaik",
+        "resolvedDate":null,
+        "remarksByMechanic":null,
+        "breakDownFrom":"12/03/2018",
+        "amountCharged":null,
+        "mechanicContactNumber":"7684876516",
+        "customerContactNumber":"8984218571",
+        "customerName":"Suman Das",
+        "latitude":"80.520",
+        "longitutde":"20.00",
+        "assignedDate":"19/03/2018"
+    }
+]

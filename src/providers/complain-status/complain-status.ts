@@ -19,4 +19,10 @@ export class ComplainStatusProvider {
     let complainsStatus= await this.http.get(this.constants.API_GATEWAY+this.constants.GET_USER_COMPLAIN_STATUS).toPromise() as  ComplainStatus[]; 
     return complainsStatus;
   }
+
+  async getComplainStatusMechanic()
+  {
+    let complainsStatus= await this.http.get(this.constants.API_GATEWAY+this.constants.GET_MECHANIC_COMPLAIN_STATUS).toPromise() as  ComplainStatus[]; 
+    return complainsStatus;
+  }
 }
