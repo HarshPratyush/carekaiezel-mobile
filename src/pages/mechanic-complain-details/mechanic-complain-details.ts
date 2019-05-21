@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 
@@ -17,7 +17,7 @@ import { CallNumber } from '@ionic-native/call-number';
 export class MechanicComplainDetailsPage {
 
   complainStatus:ComplainStatus
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams,private callNumber: CallNumber) {
   }
 
@@ -29,6 +29,7 @@ export class MechanicComplainDetailsPage {
     this.complainStatus=this.navParams.data;
     else
     this.navCtrl.setRoot('AssignedComplaintPage')
+
   }
 
   callCustomer()
@@ -37,5 +38,8 @@ export class MechanicComplainDetailsPage {
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
   }
+
+
+  
 
 }

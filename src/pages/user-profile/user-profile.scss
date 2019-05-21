@@ -33,4 +33,15 @@ page-user-profile {
     .action-sheet-destructive ion-icon {
       color: #757575;
     }
+
+    
+    ion-content{
+        background-image: url('../assets/imgs/kaizel_bg.jpg');
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+
+    ion-card,ion-item{
+        background: none !important;
+    }
 }
