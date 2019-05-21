@@ -13,7 +13,7 @@ import { ToastController } from 'ionic-angular';
 export class UtilServiceProvider {
 
   private userDetails:UserDetails;
-  private menu: Array<{title: string, component: any}>;
+  private menu: Array<{title: string, component: string,icon:string}>;
   constructor(public http: HttpClient,private constantsService:ConstantsServiceProvider,private toast:ToastController) {
   }
 
@@ -33,19 +33,19 @@ export class UtilServiceProvider {
         if(this.userDetails.designationIds.indexOf(1)>-1)
         {
         this.menu = [
-          { title: 'Home', component: 'HomePage' },
-          { title: 'Reach Us', component: 'HomePage' },
-          { title: 'Manage Profile', component: 'UserProfilePage' },
-          { title: 'Track Complain', component: 'ComplainStatusPage' },
+          { title: 'Home', component: 'HomePage',icon:'home' },
+          { title: 'Reach Us', component: 'HomePage',icon:'globe' },
+          { title: 'Manage Profile', component: 'UserProfilePage',icon:'person' },
+          { title: 'Track Complain', component: 'ComplainStatusPage',icon:'construct' },
         ];
       }
     
     else{
         this.menu = [
-          { title: 'Home', component: 'HomePage' },
-          { title: 'Reach Us', component: 'HomePage' },
-          { title: 'Manage Profile', component: 'UserProfilePage' },
-          { title: 'My Assignment', component: 'AssignedComplaintPage' }
+          { title: 'Home', component: 'HomePage',icon:'home' },
+          { title: 'Reach Us', component: 'HomePage',icon:'globe' },
+          { title: 'Manage Profile', component: 'UserProfilePage',icon:'person' },
+          { title: 'My Assignment', component: 'AssignedComplaintPage',icon:'construct' }
         ];
       }
 
