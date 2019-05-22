@@ -4,4 +4,14 @@ page-register-complaint {
         height: 250px;
     }
     
+    ion-content{
+        background-image: url('../assets/imgs/kaizel_bg.jpg');
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+
+    ion-item{
+        background: none !important;
+        border-bottom:thin solid !important;
+    }
 }

@@ -6,7 +6,7 @@
   </ion-header>
 
   <ion-content >
-    <ion-list *ngIf="utilService.getMenu() ">
+    <ion-list *ngIf="utilService.getMenu() " class="menu">
       <button menuClose ion-item *ngFor="let p of utilService.getMenu()" (click)="openPage(p)">
         <ion-icon name="{{p.icon}}" item-start large color="secondary"></ion-icon> {{p.title}}
       </button>
