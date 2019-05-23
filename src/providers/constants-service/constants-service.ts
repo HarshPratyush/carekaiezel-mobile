@@ -13,17 +13,17 @@ export class ConstantsServiceProvider {
   constructor(public http: HttpClient) {
   }
 
-  public  get API_GATEWAY(){return 'assets/data/'}
+  public  get API_GATEWAY(){return 'http://localhost:8080/'}
 
-  public get USER_ROLES_URL(){return 'userRoles-dummy.json'};
+  public get USER_ROLES_URL(){return 'assets/data/userRoles-dummy.json'};
 
-  public get SIGNUP_URL(){return 'userRoles-dummy.json'};
+  public get SIGNUP_URL(){return 'anynomus/saveUserRegistration'};
 
   public get LOGIN_URL(){return 'oauth/token'};
 
-  public get USER_DATA(){return 'user-details.json'};
+  public get USER_DATA(){return 'user'};
 
-  public get ACESS_TOKEN(){return 'kaizel_acess_token'};
+  public get ACCESS_TOKEN(){return 'kaizel_acess_token'};
 
   public get REFRESH_TOKEN(){return 'kaizel_refresh_token'};
 
@@ -31,8 +31,11 @@ export class ConstantsServiceProvider {
 
   public get UPDATE_USER() {return ''};
 
-  public get GET_USER_COMPLAIN_STATUS(){return 'complain-status.json'};
+  public get GET_USER_COMPLAIN_STATUS(){return 'customerComplainStatus'};
 
   public get GET_MECHANIC_COMPLAIN_STATUS(){return 'mechanic-complaint-status.json'}
+
+
+  public get REGISTER_COMPLAINT_URL(){return 'registerComplain'}
 
 }

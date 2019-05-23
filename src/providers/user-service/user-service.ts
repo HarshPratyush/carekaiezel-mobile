@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConstantsServiceProvider } from '../constants-service/constants-service';
 import { NewUserModel } from '../../models/newUserModel';
+import { URLSearchParams } from '@angular/http';
 
 /*
   Generated class for the UserServiceProvider provider.
@@ -17,29 +18,54 @@ export class UserServiceProvider {
 
 
   async getUserRoles(){
-    return await this.http.get(this.constants.API_GATEWAY+this.constants.USER_ROLES_URL).toPromise() as UserRoles[];
+    return await this.http.get(
+      // this.constants.API_GATEWAY+
+      this.constants.USER_ROLES_URL).toPromise() as UserRoles[];
   }
 
   async signup(newUser:NewUserModel)
   {
 
-  //to be uncommented  // return await this.http.post(this.constants.API_GATEWAY+this.constants.SIGNUP_URL,newUser).toPromise();
+  //to be uncommented  // 
+  return await this.http.post(this.constants.API_GATEWAY+this.constants.SIGNUP_URL,newUser).toPromise();
    // to be removed
-    return await this.http.get(this.constants.API_GATEWAY+this.constants.USER_ROLES_URL).toPromise() as UserRoles[];
+    // return await this.http.get(this.constants.API_GATEWAY+this.constants.USER_ROLES_URL).toPromise() as UserRoles[];
   }
 
   async login(userData)
   {
     //to be uncommented
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      })
+    };
 
-    // let tokens=  await this.http.post(this.constants.API_GATEWAY+this.constants.LOGIN_URL,userData).toPromise() as any;
+    let params = new URLSearchParams();
+    params.append('username', userData.email);
+    params.append('password', userData.password);
+    params.append('grant_type', 'password');
 
-    // to be removed
-     let userDetails=await this.http.get(this.constants.API_GATEWAY+this.constants.USER_DATA).toPromise() as UserDetails;
+    try{
+    
+    let tokens=  await this.http.post(this.constants.API_GATEWAY+this.constants.LOGIN_URL,params.toString(),httpOptions).toPromise() as any;
+     
+    const httpOptionsUser = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + tokens.access_token,
+        'Content-type': 'application/json'
+      })
+    };
 
-    // localStorage.setItem(this.constants.ACESS_TOKEN,tokens.access_token);
-    // localStorage.setItem(this.constants.REFRESH_TOKEN,tokens.refresh_token);
-    localStorage.setItem(this.constants.USER_DETAILS,JSON.stringify(userDetails));
+    let userDetails=await this.http.get(this.constants.API_GATEWAY+this.constants.USER_DATA,httpOptionsUser).toPromise() as UserDetails;
+     localStorage.setItem(this.constants.ACCESS_TOKEN,tokens.access_token);
+     localStorage.setItem(this.constants.REFRESH_TOKEN,tokens.refresh_token);
+     localStorage.setItem(this.constants.USER_DETAILS,JSON.stringify(userDetails));
+    }
+    catch{
+
+    }
+ 
     }
 
 

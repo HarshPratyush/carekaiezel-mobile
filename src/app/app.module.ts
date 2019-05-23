@@ -8,10 +8,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserServiceProvider } from '../providers/user-service/user-service';
 import { ConstantsServiceProvider } from '../providers/constants-service/constants-service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UtilServiceProvider } from '../providers/util-service/util-service';
 import { ComplainStatusProvider } from '../providers/complain-status/complain-status';
 import { CallNumber } from '@ionic-native/call-number';
+import { HttpInterceptorProvider } from '../providers/http-interceptor/http-interceptor';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import { CallNumber } from '@ionic-native/call-number';
     UtilServiceProvider,
     ComplainStatusProvider,
     CallNumber,
+    HttpInterceptorProvider,
+    {provide:HTTP_INTERCEPTORS,useClass:HttpInterceptorProvider,multi:true}
     
   ]
 })

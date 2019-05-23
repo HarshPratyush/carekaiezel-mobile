@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ActionSheet } from 'ionic-angular';
 import LocationPicker from "location-picker";
+import { ComplainStatusProvider } from '../../providers/complain-status/complain-status';
 /**
  * Generated class for the RegisterComplaintPage page.
  *
@@ -22,12 +23,12 @@ export class RegisterComplaintPage {
     description:'',
     image:'',
     latitude:0,
-    longitutde:0,
+    longitude:0,
   };
   currentDate:string;
   locationPicker: LocationPicker;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private actionSheetCtrl: ActionSheetController) {
+    private actionSheetCtrl: ActionSheetController,private complainService:ComplainStatusProvider) {
       this.currentDate=new Date().toISOString()
       console.log(this.currentDate)
       setTimeout(() => {
@@ -53,7 +54,7 @@ export class RegisterComplaintPage {
         // Get current location and show it in HTML
           let locationData = this.locationPicker.getMarkerPosition()
       this.complaintSubmissionModel.latitude=locationData.lat;
-      this.complaintSubmissionModel.longitutde=locationData.lng;
+      this.complaintSubmissionModel.longitude=locationData.lng;
 
     });
 }
@@ -81,6 +82,12 @@ export class RegisterComplaintPage {
   
   
     this.actionSheet.present();
+  }
+
+  async registerComplaint()
+  {
+
+      await this.complainService.registerComplaint(this.complaintSubmissionModel);
   }
 
 }
