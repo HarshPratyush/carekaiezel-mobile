@@ -1,6 +1,7 @@
 import { Component  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
+import { ConstantsServiceProvider } from '../../providers/constants-service/constants-service';
 
 /**
  * Generated class for the MechanicComplainDetailsPage page.
@@ -17,8 +18,9 @@ import { CallNumber } from '@ionic-native/call-number';
 export class MechanicComplainDetailsPage {
 
   complainStatus:ComplainStatus
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,private callNumber: CallNumber) {
+  url:string
+  constructor(public navCtrl: NavController, public navParams: NavParams,private callNumber: CallNumber,private constantServiceProvider:ConstantsServiceProvider) {
+    this.url=constantServiceProvider.API_GATEWAY+constantServiceProvider.DOC_URL
   }
 
   ionViewDidLoad() {

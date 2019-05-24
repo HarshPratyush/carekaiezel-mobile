@@ -15,7 +15,7 @@
 
     <ion-item text-wrap>
       <ion-avatar item-end>
-          <img src="assets/imgs/dummy.jpg">
+        <img [src]="complainStatus?.attachment?url+complainStatus?.attachment:'assets/imgs/lift-home.png'">
         </ion-avatar>
         <h2>Complain Id : {{complainStatus.complainId}}</h2>
       </ion-item>

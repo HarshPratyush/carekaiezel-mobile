@@ -30,13 +30,21 @@ export class RegisterComplaintPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private actionSheetCtrl: ActionSheetController,private complainService:ComplainStatusProvider) {
       this.currentDate=new Date().toISOString()
-      console.log(this.currentDate)
       setTimeout(() => {
         this.intializePicker();
     }, 2000);
   }
 
   ionViewDidLoad() {
+  }
+  imageUploadNew(e)
+  {
+    var blob = e.target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(blob); 
+    reader.onloadend = ()=> {
+        this.complaintSubmissionModel.image= reader.result as string;                
+    }
   }
 
   intializePicker() {
@@ -68,7 +76,7 @@ export class RegisterComplaintPage {
       {
           text: 'Upload Image',
           handler: () => {
-            console.log('Upload clicked');
+            document.getElementById('image').click();
           }
         },{
           text: 'Cancel',

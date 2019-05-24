@@ -18,7 +18,7 @@
     <ion-list>
       <ion-item text-wrap *ngFor="let complain of complainsStaus "  (click)="viewDetails(complain)">
         <ion-thumbnail item-start>
-          <img src="assets/imgs/logo.png">
+          <img [src]="complain?.attachment?url+complain?.attachment:'assets/imgs/lift-home.png'">
         </ion-thumbnail>
         <h2>Complain Id: {{complain.complainId}}</h2>
         <p>Status : {{complain.status}} </p>
