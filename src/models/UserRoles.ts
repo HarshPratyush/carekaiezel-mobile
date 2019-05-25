@@ -1,5 +1,5 @@
 interface UserRoles{
 
-    roleName : string,
-    roleId : number
+    name : string,
+    id : number
 }

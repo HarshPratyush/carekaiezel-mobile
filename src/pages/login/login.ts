@@ -34,9 +34,12 @@ export class LoginPage {
 
   async login()
   {
-    await this.userService.login(this.loginData);
+    let login=await this.userService.login(this.loginData);
+    if(login)
+    {
     this.utilService.setUserDetails();
     this.utilService.setMenu();
     this.navCtrl.setRoot('HomePage')
+    }
   }
 }

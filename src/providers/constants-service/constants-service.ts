@@ -15,7 +15,7 @@ export class ConstantsServiceProvider {
 
   public  get API_GATEWAY(){return 'http://localhost:8080/'}
 
-  public get USER_ROLES_URL(){return 'assets/data/userRoles-dummy.json'};
+  public get USER_ROLES_URL(){return 'anynomus/getAllRole'};
 
   public get SIGNUP_URL(){return 'anynomus/saveUserRegistration'};
 

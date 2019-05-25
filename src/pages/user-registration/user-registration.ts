@@ -101,9 +101,15 @@ export class UserRegistrationPage {
 
     else
 {
-    await this.userService.signup(this.newUser);
+    let result:any=await this.userService.signup(this.newUser);
 
+    if(result.statusCode==200)
     this.navCtrl.setRoot('LoginPage');
+
+
+    else{
+      this.utilService.showToast(result.message)
+    }
 }
   }
 }

@@ -18,7 +18,7 @@
       
           <ion-label>Register As</ion-label>
         <ion-select type="text" [(ngModel)]="newUser.roleId" interface="popover">
-          <ion-option *ngFor="let role of userRoles" [value]="role.roleId">{{role.roleName}}</ion-option>
+          <ion-option *ngFor="let role of userRoles" [value]="role.id">{{role.name}}</ion-option>
         </ion-select>
       </ion-item>
 

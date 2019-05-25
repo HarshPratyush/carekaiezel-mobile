@@ -1,8 +1,8 @@
-import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConstantsServiceProvider } from '../constants-service/constants-service';
-import { catchError, tap, switchMap, finalize, filter, take } from 'rxjs/operators';
-import { Observable } from 'rxjs/Observable';
+import { catchError, switchMap, finalize, filter, take } from 'rxjs/operators';
+import { Observable,BehaviorSubject,Subject } from 'rxjs';
 /*
   Generated class for the HttpInterceptorProvider provider.
 
@@ -14,6 +14,7 @@ export class HttpInterceptorProvider implements HttpInterceptor {
 
   isRefreshTokenExpired: boolean;
   isRefreshingToken: boolean = false;
+  tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
   constructor(private http: HttpClient,private constants:ConstantsServiceProvider) { }
 
@@ -27,59 +28,59 @@ export class HttpInterceptorProvider implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     return next.handle(this.addToken(req, localStorage.getItem(this.constants.ACCESS_TOKEN)))
-      // .pipe(catchError(error => {
-      //   if (error instanceof HttpErrorResponse) {
-      //     switch ((<HttpErrorResponse>error).status) {
-      //       // case 400:
-      //       //   return this.handle400Error(error);
-      //       case 401:
-      //         // return this.handle401Error(req, next);
-      //     }
-      //     return throwError(error);
-      //   } 
-      // }));
+      .pipe(catchError(error => {
+        if (error instanceof HttpErrorResponse) {
+          switch ((<HttpErrorResponse>error).status) {
+            case 400:
+              return this.handle400Error(error);
+            case 401:
+              return this.handle401Error(req, next);
+          }
+          return Observable.throw(error);
+        } 
+      }));
   }
 
-  // handle401Error(req: HttpRequest<any>, next: HttpHandler) {
-  //   if (req.url === this.constants.API_GATEWAY + this.constants.LOGIN_URL) {
-  //     this.logoutUser();
-  //   }
-  //   if (!this.isRefreshingToken) {
-  //     this.isRefreshingToken = true;
+  handle401Error(req: HttpRequest<any>, next: HttpHandler) {
+    if (req.url === this.constants.API_GATEWAY + this.constants.LOGIN_URL) {
+      this.logoutUser();
+    }
+    if (!this.isRefreshingToken) {
+      this.isRefreshingToken = true;
 
-  //     // Reset here so that the following requests wait until the token
-  //     // comes back from the refreshToken call.
-  //     this.tokenSubject.next(null);
-  //     return this.refreshToken()
-  //       .pipe(switchMap((refreshToken: string) => {
-  //         this.loader.stop();
-  //         if (refreshToken) {
-  //           this.tokenSubject.next(refreshToken);
-  //           this.isRefreshingToken = false;
-  //           return next.handle(this.addToken(req, refreshToken))
+      // Reset here so that the following requests wait until the token
+      // comes back from the refreshToken call.
+      this.tokenSubject.next(null);
+      return this.refreshToken()
+        .pipe(switchMap((refreshToken: string) => {
+          // this.loader.stop();
+          if (refreshToken) {
+            this.tokenSubject.next(refreshToken);
+            this.isRefreshingToken = false;
+            return next.handle(this.addToken(req, refreshToken))
 
-  //         }
-  //         // If we don't get a new token, we are in trouble so logout.
-  //         return this.logoutUser();
-  //       }))
-  //       .pipe(catchError(error => {
-  //         // If there is an exception calling 'refreshToken', bad news so logout.
-  //         return this.logoutUser();
-  //       }))
-  //       .pipe(finalize(() => {
-  //         this.isRefreshingToken = false;
-  //       }));
-  //     // });
+          }
+          // If we don't get a new token, we are in trouble so logout.
+          return this.logoutUser();
+        }))
+        .pipe(catchError(() => {
+          // If there is an exception calling 'refreshToken', bad news so logout.
+          return this.logoutUser();
+        }))
+        .pipe(finalize(() => {
+          this.isRefreshingToken = false;
+        }));
+      // });
 
-  //   } else {
-  //     return this.tokenSubject
-  //       .pipe(filter(token => token != null))
-  //       .pipe(take(1))
-  //       .pipe(switchMap(token => {
-  //         return next.handle(this.addToken(req, token));
-  //       }));
-  //   }
-  // }
+    } else {
+      return this.tokenSubject
+        .pipe(filter(token => token != null))
+        .pipe(take(1))
+        .pipe(switchMap(token => {
+          return next.handle(this.addToken(req, token));
+        }));
+    }
+  }
 
   handle400Error(error) {
     if (error && error.status === 400 && error.error && error.error.error === 'invalid_grant') {
@@ -102,4 +103,40 @@ export class HttpInterceptorProvider implements HttpInterceptor {
     localStorage.clear();
   }
 
+
+  refreshToken(): Observable<string> {
+    const tokenObsr = new Subject<string>();
+    const token_refreshed = localStorage.getItem(this.constants.REFRESH_TOKEN);
+
+    if (token_refreshed) {
+
+      let URL: string = this.constants.API_GATEWAY+ 'oauth/token';
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+        })
+      };
+      let params = new URLSearchParams();
+      params.append('refresh_token', localStorage.getItem(this.constants.REFRESH_TOKEN));
+      params.append('grant_type', 'refresh_token')
+
+      this.http.post<UserToken>(URL, params.toString(), httpOptions)
+        .subscribe(response => {
+
+          localStorage.setItem(this.constants.ACCESS_TOKEN, response.access_token);
+
+          tokenObsr.next(response.access_token);
+        }, err => {
+          this.logoutUser();
+        });
+    }
+    return tokenObsr.asObservable();
+  }
+
+}
+
+
+interface UserToken {
+  access_token: string;
+  refresh_token: string;
 }

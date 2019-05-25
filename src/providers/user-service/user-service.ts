@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ConstantsServiceProvider } from '../constants-service/constants-service';
 import { NewUserModel } from '../../models/newUserModel';
 import { URLSearchParams } from '@angular/http';
+import { UtilServiceProvider } from '../util-service/util-service';
 
 /*
   Generated class for the UserServiceProvider provider.
@@ -13,13 +14,13 @@ import { URLSearchParams } from '@angular/http';
 @Injectable()
 export class UserServiceProvider {
 
-  constructor(public http: HttpClient,private constants:ConstantsServiceProvider) {
+  constructor(public http: HttpClient,private constants:ConstantsServiceProvider,private utilService:UtilServiceProvider) {
   }
 
 
   async getUserRoles(){
     return await this.http.get(
-      // this.constants.API_GATEWAY+
+      this.constants.API_GATEWAY+
       this.constants.USER_ROLES_URL).toPromise() as UserRoles[];
   }
 
@@ -61,9 +62,11 @@ export class UserServiceProvider {
      localStorage.setItem(this.constants.ACCESS_TOKEN,tokens.access_token);
      localStorage.setItem(this.constants.REFRESH_TOKEN,tokens.refresh_token);
      localStorage.setItem(this.constants.USER_DETAILS,JSON.stringify(userDetails));
+     return true;
     }
-    catch{
-
+    catch (error){
+      this.utilService.showToast(error.error.error_description)
+      return false;
     }
  
     }
