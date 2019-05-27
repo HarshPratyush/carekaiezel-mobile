@@ -5,4 +5,58 @@ page-home {
         background-repeat: no-repeat;
         background-size:cover;
     }
+    .icon-cirlce{
+        width: 9em;
+        height: 9em;
+        border-radius: 50%;
+        border: 3px solid #313344;
+        background-color: #fff;
+    }
+
+    .icon-big{
+       font-size:6em;
+       padding: 23px 0px 0px 25px;
+    }
+    
+    .text-centre{
+      font-size:2em;
+      text-align: center;
+    }
+
+    @media (min-width:960px)   {
+        
+        .icon-cirlce{
+            width: 9em;
+            height: 9em;
+            border-radius: 50%;
+            border: 3px solid #313344;
+            background-color: #fff;
+            margin-left: 10em;
+        }
+    }
+    
+    @media (min-width:768px)   {
+        
+        .icon-cirlce{
+            width: 9em;
+            height: 9em;
+            border-radius: 50%;
+            border: 3px solid #313344;
+            background-color: #fff;
+            margin-left: 7em;
+        }
+}
+
+
+@media (min-width:1280px)   {
+        
+    .icon-cirlce{
+        width: 9em;
+        height: 9em;
+        border-radius: 50%;
+        border: 3px solid #313344;
+        background-color: #fff;
+        margin-left: 14.5em;
+    }
+}
 }
