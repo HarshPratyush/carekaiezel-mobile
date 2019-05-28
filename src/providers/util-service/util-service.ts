@@ -34,7 +34,7 @@ export class UtilServiceProvider {
         {
         this.menu = [
           { title: 'Home', component: 'HomePage',icon:'home' },
-          { title: 'Reach Us', component: 'HomePage',icon:'call' },
+          { title: 'Reach Us', component: 'AboutUsPage',icon:'call' },
           { title: 'Manage Profile', component: 'UserProfilePage',icon:'person' },
           { title: 'Track Complain', component: 'ComplainStatusPage',icon:'construct' },
           { title: 'Log Out', component: 'Logout',icon:'power' }
@@ -44,7 +44,7 @@ export class UtilServiceProvider {
     else{
         this.menu = [
           { title: 'Home', component: 'HomePage',icon:'home' },
-          { title: 'Reach Us', component: 'HomePage',icon:'call' },
+          { title: 'Reach Us', component: 'AboutUsPage',icon:'call' },
           { title: 'Manage Profile', component: 'UserProfilePage',icon:'person' },
           { title: 'My Assignment', component: 'AssignedComplaintPage',icon:'construct' },
           { title: 'Log Out', component: 'Logout',icon:'power' }
