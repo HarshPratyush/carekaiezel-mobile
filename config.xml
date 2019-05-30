@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version='1.0' encoding='utf-8'?>
 <widget id="com.kaizel.carekaizelmobile" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>carekaiezel</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="harshpratyush1206@gmail.com" href="http://ionicframework.com/">Harsh Pratyush</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.43.66:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -98,4 +98,5 @@
     </plugin>
     <plugin name="cordova-plugin-googlemaps" spec="^2.6.2" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <allow-navigation href="http://192.168.43.66:8100" sessionid="a7bf9c15" />
 </widget>

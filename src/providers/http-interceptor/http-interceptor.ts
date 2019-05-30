@@ -1,8 +1,9 @@
-import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse, HttpHeaders, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConstantsServiceProvider } from '../constants-service/constants-service';
-import { catchError, switchMap, finalize, filter, take } from 'rxjs/operators';
+import { catchError, switchMap, finalize, filter, take, tap } from 'rxjs/operators';
 import { Observable,BehaviorSubject,Subject } from 'rxjs';
+import { UtilServiceProvider } from '../util-service/util-service';
 /*
   Generated class for the HttpInterceptorProvider provider.
 
@@ -16,7 +17,7 @@ export class HttpInterceptorProvider implements HttpInterceptor {
   isRefreshingToken: boolean = false;
   tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-  constructor(private http: HttpClient,private constants:ConstantsServiceProvider) { }
+  constructor(private http: HttpClient,private constants:ConstantsServiceProvider,private utilService:UtilServiceProvider) { }
 
   addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
     if (token)
@@ -27,18 +28,28 @@ export class HttpInterceptorProvider implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
+    this.utilService.createLoader();
     return next.handle(this.addToken(req, localStorage.getItem(this.constants.ACCESS_TOKEN)))
       .pipe(catchError(error => {
         if (error instanceof HttpErrorResponse) {
           switch ((<HttpErrorResponse>error).status) {
             case 400:
+                this.utilService.stopLoader();
               return this.handle400Error(error);
             case 401:
               return this.handle401Error(req, next);
           }
+          this.utilService.stopLoader();
           return Observable.throw(error);
         } 
-      }));
+      })).pipe(tap((event: HttpEvent<any>) => { 
+        if (event instanceof HttpResponse) {
+          this.utilService.stopLoader();
+        }
+      },
+        (err: any) => {
+          this.utilService.stopLoader();
+      }));;
   }
 
   handle401Error(req: HttpRequest<any>, next: HttpHandler) {

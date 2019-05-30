@@ -2,7 +2,7 @@ interface ComplainStatus{
     id:number,
     complainId:string,
     imageId:number,
-    registerationDate:string,
+    registrationDate:string,
     description:string,
     status:string,
     assignedTo:string,

@@ -75,7 +75,22 @@ export class UserServiceProvider {
     async update(userProfile:ProfieModel)
     {
       // to be uncommented
-     // let response = await this.http.post(this.constants.API_GATEWAY+this.constants.UPDATE_USER,userProfile).toPromise();
+
+      try{
+        const httpOptionsUser = {
+          headers: new HttpHeaders({
+            'Authorization': 'Bearer ' + localStorage.getItem(this.constants.ACCESS_TOKEN),
+            'Content-type': 'application/json'
+          })
+        };
+     let response = await this.http.post(this.constants.API_GATEWAY+this.constants.UPDATE_USER,userProfile).toPromise();
+     let userDetails=await this.http.get(this.constants.API_GATEWAY+this.constants.USER_DATA,httpOptionsUser).toPromise() as UserDetails;
+     localStorage.setItem(this.constants.USER_DETAILS,JSON.stringify(userDetails));
+     this.utilService.showToast("Success")  
+    }
+      catch(error){
+        this.utilService.showToast(error.error.error_description)
+      }
     }
 
 }

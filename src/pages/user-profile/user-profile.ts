@@ -52,13 +52,13 @@ export class UserProfilePage {
     
 const options: CameraOptions = {
   quality: 50,
-  destinationType: this.camera.DestinationType.FILE_URI,
+  destinationType: this.camera.DestinationType.DATA_URL,
   encodingType: this.camera.EncodingType.JPEG,
   mediaType: this.camera.MediaType.PICTURE
 }
 
     this.camera.getPicture(options).then((imageData) => {
-      this.userProfile.image = 'data:image/jpeg;base64,' + imageData;
+      this.userProfile.profilePhoto = 'data:image/jpeg;base64,' + imageData;
      }, (err) => {
     console.log(err)
      });
@@ -66,7 +66,7 @@ const options: CameraOptions = {
 
   imageClicked()
   {
-    if(this.userProfile.image)
+    if(this.userProfile.profilePhoto)
     {
     this.actionSheet = this.actionSheetCtrl.create({
       title: '',
@@ -80,7 +80,6 @@ const options: CameraOptions = {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
           }
         }
       ]
@@ -93,7 +92,7 @@ const options: CameraOptions = {
       {
           text: 'Upload Image',
           handler: () => {
-            console.log('Upload clicked');
+            this.imageUploadNew();
           }
         },{
           text: 'Cancel',
@@ -111,6 +110,23 @@ const options: CameraOptions = {
 
   async updateProfile()
 {
+  if(!this.userProfile.firstName)
+    {
+      this.utilService.showToast('Provide First Name')
+    }
+
+    else if(!this.userProfile.lastName)
+    {
+      this.utilService.showToast('Provide Last Name')
+    }
+
+
+    else if(!this.userProfile.contactNo )
+    {
+      this.utilService.showToast('Provide Contact No.')
+    }
+
+    else
     await this.userServiceProvide.update(this.userProfile)
   }
 }

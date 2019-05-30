@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConstantsServiceProvider } from '../constants-service/constants-service';
-import { ToastController } from 'ionic-angular';
+import { ToastController, LoadingController, Loading } from 'ionic-angular';
 
 /*
   Generated class for the UtilServiceProvider provider.
@@ -12,9 +12,11 @@ import { ToastController } from 'ionic-angular';
 @Injectable()
 export class UtilServiceProvider {
 
+  loaderObject:Loading;
   private userDetails:UserDetails;
   private menu: Array<{title: string, component: string,icon:string}>;
-  constructor(public http: HttpClient,private constantsService:ConstantsServiceProvider,private toast:ToastController) {
+  constructor(public http: HttpClient,
+    private constantsService:ConstantsServiceProvider,private toast:ToastController,private loader:LoadingController) {
   }
 
   setUserDetails()
@@ -65,7 +67,19 @@ export class UtilServiceProvider {
      closeButtonText:'Ok',
      showCloseButton:true
    });
-   toastShow.present();
+  return toastShow.present();
+  }
+
+  async createLoader()
+  {
+  this.loaderObject = await this.loader.create();
+  this.loaderObject.present()
+  }
+
+  stopLoader()
+  {
+    if(this.loaderObject && this.loaderObject.isOverlay)
+  this.loaderObject.dismiss()
   }
 
 }

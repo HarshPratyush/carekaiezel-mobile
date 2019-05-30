@@ -13,9 +13,9 @@ export class ConstantsServiceProvider {
   constructor(public http: HttpClient) {
   }
 
-  //public  get API_GATEWAY(){return 'http://care.kaizelengineers.com/carekaizel-bkend/'}
+  // public  get API_GATEWAY(){return 'http://care.kaizelengineers.com/carekaizel-bkend/'}
 
-  public  get API_GATEWAY(){return 'http://localhost:8080/'}
+  public  get API_GATEWAY(){return 'http://192.168.43.66:8080/'}
 
   public get USER_ROLES_URL(){return 'anynomus/getAllRole'};
 
@@ -31,7 +31,7 @@ export class ConstantsServiceProvider {
 
   public get USER_DETAILS(){return 'kaizel_user_details'};
 
-  public get UPDATE_USER() {return ''};
+  public get UPDATE_USER() {return 'updateUser'};
 
   public get GET_USER_COMPLAIN_STATUS(){return 'customerComplainStatus'};
 

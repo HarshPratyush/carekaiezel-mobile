@@ -5,5 +5,5 @@ interface ProfieModel{
     lastName:string;
     emailId:string;
     contactNo:string;
-    image:string;
+    profilePhoto:string;
 }

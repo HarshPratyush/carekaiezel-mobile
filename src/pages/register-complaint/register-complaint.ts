@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ActionSheetController, ActionSheet
 import LocationPicker from "location-picker";
 import { ComplainStatusProvider } from '../../providers/complain-status/complain-status';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { UtilServiceProvider } from '../../providers/util-service/util-service';
 /**
  * Generated class for the RegisterComplaintPage page.
  *
@@ -32,7 +33,7 @@ export class RegisterComplaintPage {
   locationPicker: LocationPicker;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private actionSheetCtrl: ActionSheetController,private complainService:ComplainStatusProvider,
-    private camera: Camera) {
+    private camera: Camera,private utilService:UtilServiceProvider) {
       this.currentDate=new Date().toISOString()
       setTimeout(() => {
         this.intializePicker();
@@ -46,7 +47,7 @@ export class RegisterComplaintPage {
 
     const options: CameraOptions = {
       quality: 50,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
@@ -105,7 +106,15 @@ export class RegisterComplaintPage {
   async registerComplaint()
   {
 
-      await this.complainService.registerComplaint(this.complaintSubmissionModel);
+      let responseData:any =await this.complainService.registerComplaint(this.complaintSubmissionModel);
+
+      this.utilService.showToast(responseData.message).then(d=>{
+        if(responseData.statusCode==200)
+        {
+          this.navCtrl.setRoot('ComplainStatusPage')
+        }
+      });
+      
   }
 
 }
