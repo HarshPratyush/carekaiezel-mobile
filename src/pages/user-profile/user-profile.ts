@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ActionSheetController, ActionSheet
 import { UtilServiceProvider } from '../../providers/util-service/util-service';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-
+import { Camera, CameraOptions } from '@ionic-native/camera';
 /**
  * Generated class for the UserProfilePage page.
  *
@@ -24,7 +24,8 @@ export class UserProfilePage {
   userProfileGroup: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private utilService:UtilServiceProvider,
-    private actionSheetCtrl: ActionSheetController,private userServiceProvide:UserServiceProvider,private fb: FormBuilder) {
+    private actionSheetCtrl: ActionSheetController,private userServiceProvide:UserServiceProvider,
+    private fb: FormBuilder,private camera: Camera) {
   
       this.userProfileGroup = this.fb.group({
         firstName: new FormControl('', [Validators.required]),
@@ -45,6 +46,24 @@ export class UserProfilePage {
 
   }
 
+  imageUploadNew()
+  {
+
+    
+const options: CameraOptions = {
+  quality: 50,
+  destinationType: this.camera.DestinationType.FILE_URI,
+  encodingType: this.camera.EncodingType.JPEG,
+  mediaType: this.camera.MediaType.PICTURE
+}
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.userProfile.image = 'data:image/jpeg;base64,' + imageData;
+     }, (err) => {
+    console.log(err)
+     });
+  }
+
   imageClicked()
   {
     if(this.userProfile.image)
@@ -53,15 +72,9 @@ export class UserProfilePage {
       title: '',
       buttons: [
         {
-          text: 'Remove',
-          role: 'destructive',
-          handler: () => {
-            console.log('Remove clicked');
-          }
-        },{
           text: 'Edit',
           handler: () => {
-            console.log('Edit clicked');
+            this.imageUploadNew();
           }
         },{
           text: 'Cancel',

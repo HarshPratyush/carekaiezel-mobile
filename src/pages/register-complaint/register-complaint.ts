@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ActionSheet } from 'ionic-angular';
 import LocationPicker from "location-picker";
 import { ComplainStatusProvider } from '../../providers/complain-status/complain-status';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 /**
  * Generated class for the RegisterComplaintPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
 
 @IonicPage()
 @Component({
@@ -25,10 +27,12 @@ export class RegisterComplaintPage {
     latitude:0,
     longitude:0,
   };
+
   currentDate:string;
   locationPicker: LocationPicker;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private actionSheetCtrl: ActionSheetController,private complainService:ComplainStatusProvider) {
+    private actionSheetCtrl: ActionSheetController,private complainService:ComplainStatusProvider,
+    private camera: Camera) {
       this.currentDate=new Date().toISOString()
       setTimeout(() => {
         this.intializePicker();
@@ -37,14 +41,20 @@ export class RegisterComplaintPage {
 
   ionViewDidLoad() {
   }
-  imageUploadNew(e)
+  imageUploadNew()
   {
-    var blob = e.target.files[0];
-    var reader = new FileReader();
-    reader.readAsDataURL(blob); 
-    reader.onloadend = ()=> {
-        this.complaintSubmissionModel.image= reader.result as string;                
+
+    const options: CameraOptions = {
+      quality: 50,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
     }
+    this.camera.getPicture(options).then((imageData) => {
+      this.complaintSubmissionModel.image = 'data:image/jpeg;base64,' + imageData;
+     }, (err) => {
+    console.log(err)
+     });
   }
 
   intializePicker() {
@@ -76,7 +86,7 @@ export class RegisterComplaintPage {
       {
           text: 'Upload Image',
           handler: () => {
-            document.getElementById('image').click();
+           this.imageUploadNew();
           }
         },{
           text: 'Cancel',

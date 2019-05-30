@@ -13,6 +13,7 @@ import { UtilServiceProvider } from '../providers/util-service/util-service';
 import { ComplainStatusProvider } from '../providers/complain-status/complain-status';
 import { CallNumber } from '@ionic-native/call-number';
 import { HttpInterceptorProvider } from '../providers/http-interceptor/http-interceptor';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { HttpInterceptorProvider } from '../providers/http-interceptor/http-inte
     ComplainStatusProvider,
     CallNumber,
     HttpInterceptorProvider,
+    Camera,
     {provide:HTTP_INTERCEPTORS,useClass:HttpInterceptorProvider,multi:true}
     
   ]
