@@ -13,6 +13,8 @@ export class ConstantsServiceProvider {
   constructor(public http: HttpClient) {
   }
 
+  //public  get API_GATEWAY(){return 'http://care.kaizelengineers.com/carekaizel-bkend/'}
+
   public  get API_GATEWAY(){return 'http://localhost:8080/'}
 
   public get USER_ROLES_URL(){return 'anynomus/getAllRole'};

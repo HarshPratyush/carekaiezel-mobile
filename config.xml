@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.kaizel.carekaizelmobile" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.kaizel.carekaizelmobile" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>carekaiezel</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="harshpratyush1206@gmail.com" href="http://ionicframework.com/">Harsh Pratyush</author>
@@ -11,7 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-      <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDErUwEpup5OlpovobwC7h3DhtiSzAYGsU" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDErUwEpup5OlpovobwC7h3DhtiSzAYGsU" />
     <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyDErUwEpup5OlpovobwC7h3DhtiSzAYGsU" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
@@ -23,6 +23,9 @@
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
