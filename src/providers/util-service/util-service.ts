@@ -78,7 +78,7 @@ export class UtilServiceProvider {
 
   stopLoader()
   {
-    if(this.loaderObject && this.loaderObject.isOverlay)
+    if(this.loaderObject && this.loaderObject.instance)
   this.loaderObject.dismiss()
   }
 

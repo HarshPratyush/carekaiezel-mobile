@@ -3,7 +3,6 @@
     <name>carekaiezel</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="harshpratyush1206@gmail.com" href="http://ionicframework.com/">Harsh Pratyush</author>
-    <content original-src="index.html" src="http://192.168.43.66:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -11,8 +10,8 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDErUwEpup5OlpovobwC7h3DhtiSzAYGsU" />
-    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyDErUwEpup5OlpovobwC7h3DhtiSzAYGsU" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDCAt2fOQ7y1wujCYU8oDe31S4mGj4jMz4" />
+    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyDCAt2fOQ7y1wujCYU8oDe31S4mGj4jMz4" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
