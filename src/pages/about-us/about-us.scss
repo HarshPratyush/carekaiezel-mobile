@@ -1,0 +1,22 @@
+page-about-us {
+
+    ion-content{
+        background-image: url('../assets/imgs/kaizel_bg.jpg');
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+
+    ion-item{
+        background: none !important;
+        border-bottom:thin solid !important;
+    }
+
+    .text{
+        margin: 28px;
+        font-size: 19px;
+    }
+
+    .bolder{
+        font-weight: bold;
+    }
+}

@@ -34,12 +34,10 @@ export class HttpInterceptorProvider implements HttpInterceptor {
         if (error instanceof HttpErrorResponse) {
           switch ((<HttpErrorResponse>error).status) {
             case 400:
-                this.utilService.stopLoader();
               return this.handle400Error(error);
             case 401:
               return this.handle401Error(req, next);
           }
-          this.utilService.stopLoader();
           return Observable.throw(error);
         } 
       })).pipe(tap((event: HttpEvent<any>) => { 

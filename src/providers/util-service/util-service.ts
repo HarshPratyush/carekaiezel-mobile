@@ -15,6 +15,7 @@ export class UtilServiceProvider {
   loaderObject:Loading;
   private userDetails:UserDetails;
   private menu: Array<{title: string, component: string,icon:string}>;
+  loaderUsed:boolean=false;
   constructor(public http: HttpClient,
     private constantsService:ConstantsServiceProvider,private toast:ToastController,private loader:LoadingController) {
   }
@@ -73,13 +74,17 @@ export class UtilServiceProvider {
   async createLoader()
   {
   this.loaderObject = await this.loader.create();
-  this.loaderObject.present()
-  }
+  this.loaderUsed=true;
+  this.loaderObject.present();
+  this.loaderObject.onWillDismiss(d=>{
+    this.loaderUsed=false
+  });
+  
+}
 
   stopLoader()
   {
-    if(this.loaderObject && this.loaderObject.instance)
-  this.loaderObject.dismiss()
+        this.loaderObject.dismiss()
   }
 
 }

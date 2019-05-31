@@ -44,6 +44,11 @@ export class UserProfilePage {
     this.utilService.setUserDetails();
     this.userProfile=this.utilService.getUserDetails().sessionMap.user;
 
+    if(this.userProfile.profilePhoto)
+    {
+      this.userProfile.profilePhoto='data:image/jpeg;base64,'+this.userProfile.profilePhoto;
+    }
+
   }
 
   imageUploadNew()
