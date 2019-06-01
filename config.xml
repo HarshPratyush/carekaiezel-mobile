@@ -2,7 +2,7 @@
 <widget id="com.kaizel.carekaizelmobile" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>carekaizel</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="harshpratyush1206@gmail.com" href="http://ionicframework.com/">Harsh Pratyush</author>
+    <author email="info@rodionsolutions.com" href="http://www.rodionsolutions.com/">Rodion Solutions Pvt. Ltd.</author>
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
