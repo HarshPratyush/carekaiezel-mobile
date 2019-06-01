@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChildren } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { ConstantsServiceProvider } from '../../providers/constants-service/constants-service';
 import { UtilServiceProvider } from '../../providers/util-service/util-service';
 
@@ -23,7 +23,15 @@ export class HomePage {
       this.icons=utilServiceProvider.getMenu().filter(d=>d.component!='HomePage');
     }
 
+    options = {
+      initialSlide: 0,
+      loop: true,
+      autoplay:2000,
+      autoplayDisableOnInteraction: false
+    };
+
   ionViewDidLoad() {
+  
   }
 
   ngOnInit(){
@@ -31,6 +39,7 @@ export class HomePage {
     {
       this.navCtrl.setRoot('LoginPage');
     }
+   
   }
 
   openPage(page) {

@@ -42,4 +42,6 @@ export class ConstantsServiceProvider {
 
   public get DOC_URL(){return 'anynomus/doc?fileId='}
 
+  public get HELP_NO() {return '18001202690'}
+
 }

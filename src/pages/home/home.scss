@@ -12,6 +12,11 @@ page-home {
         background-color: #fff;
     }
 
+    .card-content{
+        background:linear-gradient(241deg, #f3cea7 10%, #d2a060 60%, #d1a466 75%) !important;
+      }
+      
+
     .icon-big{
        font-size:6em;
        padding: 23px 0px 0px 25px;
@@ -58,4 +63,26 @@ page-home {
         margin-left: 14.5em;
     }
 }
+
+.swiper-slide img {
+    width:100% !important;
+    height: auto;
+    max-height: 100%;
+}
+
+.bold{
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+p{
+    border-color: rgba(0,0,0,0.1);
+    border-top: thin solid;
+    border-collapse: separate;
+  border-spacing: 15px;
+    font-size: 1.8rem !important;
+    color: #333 !important;
+}
+
+
 }
