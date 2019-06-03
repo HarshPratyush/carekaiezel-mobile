@@ -34,6 +34,24 @@ export class LoginPage {
 
   async login()
   {
+    let emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+    if(!this.loginData.email )
+    {
+      this.utilService.showToast('Provide Email Id')
+    }
+
+    else if(!emailRegex.test(this.loginData.email))
+    {
+      this.utilService.showToast('Provide Valid Email Id.') 
+    }
+
+    else if(!this.loginData.password)
+    {
+      this.utilService.showToast('Provide Password')
+    }
+    
+   else {
     let login=await this.userService.login(this.loginData);
     if(login)
     {
@@ -41,5 +59,6 @@ export class LoginPage {
     this.utilService.setMenu();
     this.navCtrl.setRoot('HomePage')
     }
+  }
   }
 }

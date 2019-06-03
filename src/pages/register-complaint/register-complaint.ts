@@ -105,7 +105,22 @@ export class RegisterComplaintPage {
 
   async registerComplaint()
   {
+    if(!this.complaintSubmissionModel.breakDownFrom){
+      this.utilService.showToast('Select Break Down Date');
+    }
 
+    else if(!this.complaintSubmissionModel.description)
+    {
+      this.utilService.showToast('Please provide some description');
+    }
+
+    else if(!this.complaintSubmissionModel.latitude)
+    {
+      this.utilService.showToast('Please provide latitude');
+    }
+
+    else
+    {
       let responseData:any =await this.complainService.registerComplaint(this.complaintSubmissionModel);
 
       this.utilService.showToast(responseData.message).then(d=>{
@@ -114,6 +129,7 @@ export class RegisterComplaintPage {
           this.navCtrl.setRoot('ComplainStatusPage')
         }
       });
+      }
       
   }
 

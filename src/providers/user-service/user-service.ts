@@ -83,10 +83,10 @@ export class UserServiceProvider {
             'Content-type': 'application/json'
           })
         };
-     let response = await this.http.post(this.constants.API_GATEWAY+this.constants.UPDATE_USER,userProfile).toPromise();
+     let response = await this.http.post(this.constants.API_GATEWAY+this.constants.UPDATE_USER,userProfile).toPromise() as any;
      let userDetails=await this.http.get(this.constants.API_GATEWAY+this.constants.USER_DATA,httpOptionsUser).toPromise() as UserDetails;
      localStorage.setItem(this.constants.USER_DETAILS,JSON.stringify(userDetails));
-     this.utilService.showToast("Success")  
+     this.utilService.showToast(response.message)  
     }
       catch(error){
         this.utilService.showToast(error.error.error_description)
