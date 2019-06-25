@@ -15,7 +15,7 @@ export class ConstantsServiceProvider {
 
   // public  get API_GATEWAY(){return 'http://care.kaizelengineers.com/carekaizel-bkend/'}
 
-  public  get API_GATEWAY(){return 'http://localhost:8080/'}
+  public  get API_GATEWAY(){return 'http://localhost:8080/care-kaizel/'}
 
   public get USER_ROLES_URL(){return 'anynomus/getAllRole'};
 
@@ -43,5 +43,7 @@ export class ConstantsServiceProvider {
   public get DOC_URL(){return 'anynomus/doc?fileId='}
 
   public get HELP_NO() {return '18001202690'}
+
+  public get GET_ALL_PRODUCT(){return 'getAllProducts'}
 
 }

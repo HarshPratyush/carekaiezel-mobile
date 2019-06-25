@@ -20,13 +20,17 @@ import { UtilServiceProvider } from '../../providers/util-service/util-service';
 export class RegisterComplaintPage {
 
   actionSheet:ActionSheet;
+  allProducts:any[]=[];
+  selectedCategory;
+
   complaintSubmissionModel:ComplaintSubmissionModel={
     adress:'',
-    breakDownFrom:new Date(),
+    breakDownFrom:null,
     description:'',
     image:'',
     latitude:0,
     longitude:0,
+    product:0
   };
 
   currentDate:string;
@@ -40,6 +44,9 @@ export class RegisterComplaintPage {
     }, 2000);
   }
 
+  ngOnInit(){
+    this.getAllProducts();
+  }
   ionViewDidLoad() {
   }
   imageUploadNew()
@@ -56,6 +63,10 @@ export class RegisterComplaintPage {
      }, (err) => {
     console.log(err)
      });
+  }
+
+  async getAllProducts(){
+    this.allProducts = await this.complainService.getAllProducts() as any;
   }
 
   intializePicker() {
@@ -112,6 +123,15 @@ export class RegisterComplaintPage {
     else if(!this.complaintSubmissionModel.description)
     {
       this.utilService.showToast('Please provide some description');
+    }
+
+    else if(!this.selectedCategory)
+    {
+      this.utilService.showToast('Please select product category');
+    }
+    else if(!this.complaintSubmissionModel.product)
+    {
+      this.utilService.showToast('Please select a product')
     }
 
     else if(!this.complaintSubmissionModel.latitude)

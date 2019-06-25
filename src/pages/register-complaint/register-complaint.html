@@ -26,6 +26,24 @@
   <ion-textarea type="textarea" [(ngModel)]="complaintSubmissionModel.description"></ion-textarea>
 </ion-item>
 
+
+<ion-item>
+  <ion-label  stacked>Category</ion-label>
+  <ion-select type="text" [(ngModel)]="selectedCategory" interface="popover">
+    <ion-option *ngFor="let opt of allProducts" [value]="opt">{{opt.categoryName}}</ion-option>
+  </ion-select>
+</ion-item>
+
+
+<ion-item>
+  <ion-label  stacked>Product</ion-label>
+
+  <ion-select type="text" [(ngModel)]="complaintSubmissionModel.product" interface="popover">
+    <ion-option *ngFor="let opt of selectedCategory?.products" [value]="opt.id">{{opt.productName}}</ion-option>
+  </ion-select>
+
+</ion-item>
+
 <ion-item>
   <ion-label  stacked>Adress</ion-label>
   <ion-textarea type="textarea" [(ngModel)]="complaintSubmissionModel.adress"></ion-textarea>

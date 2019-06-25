@@ -2,6 +2,9 @@ import { Component  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { ConstantsServiceProvider } from '../../providers/constants-service/constants-service';
+import { Status } from '../../enums/Status';
+import { ComplainStatusProvider } from '../../providers/complain-status/complain-status';
+import { UtilServiceProvider } from '../../providers/util-service/util-service';
 
 /**
  * Generated class for the MechanicComplainDetailsPage page.
@@ -18,8 +21,19 @@ import { ConstantsServiceProvider } from '../../providers/constants-service/cons
 export class MechanicComplainDetailsPage {
 
   complainStatus:ComplainStatus
-  url:string
-  constructor(public navCtrl: NavController, public navParams: NavParams,private callNumber: CallNumber,private constantServiceProvider:ConstantsServiceProvider) {
+  url:string;
+  remark;
+  amount;
+
+  assignedStatus=Status.ASIGNED_TO_MECHANIC;
+  outForResoultion=Status.OUT_FOR_RESOLUTION;
+  inProgressStatus=Status.IN_PROGRESS;
+  deferredStatus=Status.DEFERRED;
+  resolvedStatus=Status.RESOLVED;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,private callNumber: CallNumber,
+    private constantServiceProvider:ConstantsServiceProvider,private complaintService:ComplainStatusProvider,private utilService:UtilServiceProvider) {
     this.url=constantServiceProvider.API_GATEWAY+constantServiceProvider.DOC_URL
   }
 
@@ -31,14 +45,82 @@ export class MechanicComplainDetailsPage {
     this.complainStatus=this.navParams.data;
     else
     this.navCtrl.setRoot('AssignedComplaintPage')
-
   }
 
   callCustomer()
   {
-    this.callNumber.callNumber(this.complainStatus.customerContactNumber.toString(), true)
+    this.callNumber.callNumber(this.complainStatus.customerDetails.contactNo.toString(), true)
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
+  }
+
+  async outForResoultionSelect()
+  {
+    let responseData = await this.complaintService.outForResolution(this.complainStatus.id) as any;
+    this.utilService.showToast(responseData.message).then(d=>{
+      if(responseData.statusCode==200)
+      {
+        this.navCtrl.setRoot('AssignedComplaintPage')
+      }
+    });
+  }
+
+  async inProgressStatusSelect(){
+    let responseData = await this.complaintService.inProgress(this.complainStatus.id) as any;
+    this.utilService.showToast(responseData.message).then(d=>{
+      if(responseData.statusCode==200)
+      {
+        this.navCtrl.setRoot('AssignedComplaintPage')
+      }
+    });
+
+  }
+  async deferredStatusSelect(){
+    if(!this.amount)
+    {
+      this.utilService.showToast('Please Enter amount Charged')
+    }
+
+    else if(!this.remark)
+    {
+      this.utilService.showToast('Please enter remark');
+    }
+
+
+    else
+    {
+    let responseData = await this.complaintService.deferred(this.complainStatus.id,this.amount,this.remark) as any;
+    this.utilService.showToast(responseData.message).then(d=>{
+      if(responseData.statusCode==200)
+      {
+        this.navCtrl.setRoot('AssignedComplaintPage')
+      }
+    });
+  }
+
+  }
+  async resolvedStatusSelect(){
+    if(!this.amount)
+    {
+      this.utilService.showToast('Please Enter amount Charged')
+    }
+
+    else if(!this.remark)
+    {
+      this.utilService.showToast('Please enter remark');
+    }
+
+    else
+    {
+    let responseData = await this.complaintService.resolved(this.complainStatus.id,this.amount,this.remark) as any;
+    this.utilService.showToast(responseData.message).then(d=>{
+      if(responseData.statusCode==200)
+      {
+        this.navCtrl.setRoot('AssignedComplaintPage')
+      }
+    });
+  }
+
   }
 
 

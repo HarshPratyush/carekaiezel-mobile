@@ -17,6 +17,9 @@ interface ComplainStatus{
     latitude:string,
     longitutde:string,
     assignedDate:string,
-    attachment:number
+    attachment:number,
+    productName:string,
+    categoryName:string,
+    customerDetails
 
 }

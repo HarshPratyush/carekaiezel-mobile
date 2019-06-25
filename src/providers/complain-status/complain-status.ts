@@ -31,4 +31,29 @@ export class ComplainStatusProvider {
     let registerComplaintSatus = await this.http.post(this.constants.API_GATEWAY+this.constants.REGISTER_COMPLAINT_URL,complainRegister).toPromise()
     return registerComplaintSatus;
   }
+
+  async getAllProducts(){
+    let allProducts = await this.http.get(this.constants.API_GATEWAY+this.constants.GET_ALL_PRODUCT).toPromise();
+    return allProducts;
+  }
+
+  async outForResolution(complainId) {
+    let responseModel = await this.http.post(this.constants.API_GATEWAY+'outForResolution'+'?complainId='+complainId,null).toPromise()
+    return  responseModel
+	}
+	
+	async inProgress( complainId) {
+    let responseModel = await this.http.post(this.constants.API_GATEWAY+'inProgress'+'?complainId='+complainId,null).toPromise()
+    return  responseModel
+	}
+	
+	async deferred( complainId,  amountCharged,  remarkByMechanic) {
+    let responseModel = await this.http.post(this.constants.API_GATEWAY+'deferred'+'?complainId='+complainId+'&amountCharged='+amountCharged+'&remarkByMechanic='+remarkByMechanic,null).toPromise()
+    return  responseModel
+	}
+	
+	async resolved( complainId,  amountCharged,  remarkByMechanic) {
+    let responseModel = await this.http.post(this.constants.API_GATEWAY+'resolved'+'?complainId='+complainId+'&amountCharged='+amountCharged+'&remarkByMechanic='+remarkByMechanic,null).toPromise()
+    return  responseModel
+	}
 }

@@ -4,5 +4,6 @@ interface ComplaintSubmissionModel{
     description:string,
     adress:string,
     latitude:number,
-    longitude:number
+    longitude:number,
+    product:number;
 }
