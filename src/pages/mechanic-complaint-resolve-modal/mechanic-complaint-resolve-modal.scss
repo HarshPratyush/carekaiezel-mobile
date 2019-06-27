@@ -1,0 +1,47 @@
+page-mechanic-complaint-resolve-modal {
+
+    .list .item-input:last-child {
+        border-bottom: none !important;
+    }
+
+
+    .list .item-input.ng-valid.item-input-has-value {
+        border-bottom-color:none !important;
+        box-shadow:none !important;
+    }
+
+    .item.item-input.ng-valid.item-input-has-value .item-inner {
+        border-bottom-color: #6675df !important;
+        box-shadow: none !important ;
+        border-bottom:2px solid #6675df  !important;
+    }
+
+    .list>.item-block:last-child .item-inner{
+        border-bottom-color: #6675df !important;
+        box-shadow: none !important ;
+        border-bottom:2px solid #6675df  !important;
+    }
+
+    // .no-border
+    // {
+    //     border :none !important;
+    // }
+    // ion-thumbnail{
+    //     border: 1px solid #333;
+    // }
+    .action-sheet-cancel ion-icon,
+    .action-sheet-destructive ion-icon {
+      color: #757575;
+    }
+
+    
+    ion-content{
+        background-image: url('../assets/imgs/kaizel_bg.jpg');
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+
+    ion-card,ion-item{
+        background: none !important;
+    }
+}

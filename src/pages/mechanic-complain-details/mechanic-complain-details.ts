@@ -1,10 +1,11 @@
 import { Component  } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { ConstantsServiceProvider } from '../../providers/constants-service/constants-service';
 import { Status } from '../../enums/Status';
 import { ComplainStatusProvider } from '../../providers/complain-status/complain-status';
 import { UtilServiceProvider } from '../../providers/util-service/util-service';
+import { MechanicComplaintResolveModalPage } from '../mechanic-complaint-resolve-modal/mechanic-complaint-resolve-modal';
 
 /**
  * Generated class for the MechanicComplainDetailsPage page.
@@ -22,8 +23,7 @@ export class MechanicComplainDetailsPage {
 
   complainStatus:ComplainStatus
   url:string;
-  remark;
-  amount;
+ 
 
   assignedStatus=Status.ASIGNED_TO_MECHANIC;
   outForResoultion=Status.OUT_FOR_RESOLUTION;
@@ -33,7 +33,8 @@ export class MechanicComplainDetailsPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private callNumber: CallNumber,
-    private constantServiceProvider:ConstantsServiceProvider,private complaintService:ComplainStatusProvider,private utilService:UtilServiceProvider) {
+    private constantServiceProvider:ConstantsServiceProvider,private complaintService:ComplainStatusProvider,
+    private utilService:UtilServiceProvider,private modalController:ModalController) {
     this.url=constantServiceProvider.API_GATEWAY+constantServiceProvider.DOC_URL
   }
 
@@ -76,20 +77,14 @@ export class MechanicComplainDetailsPage {
 
   }
   async deferredStatusSelect(){
-    if(!this.amount)
-    {
-      this.utilService.showToast('Please Enter amount Charged')
-    }
+   
+    let modal=this.modalController.create('MechanicComplaintResolveModalPage',{title:'Defer Complaint',button:'Defer',color:'danger'});
+    modal.present();
 
-    else if(!this.remark)
-    {
-      this.utilService.showToast('Please enter remark');
-    }
-
-
-    else
-    {
-    let responseData = await this.complaintService.deferred(this.complainStatus.id,this.amount,this.remark) as any;
+    modal.onWillDismiss(
+      async d=>{
+        if(d){
+         let responseData = await this.complaintService.deferred(this.complainStatus.id,d.amount,d.remark) as any;
     this.utilService.showToast(responseData.message).then(d=>{
       if(responseData.statusCode==200)
       {
@@ -97,22 +92,20 @@ export class MechanicComplainDetailsPage {
       }
     });
   }
+      }
+    )
 
   }
   async resolvedStatusSelect(){
-    if(!this.amount)
-    {
-      this.utilService.showToast('Please Enter amount Charged')
-    }
 
-    else if(!this.remark)
-    {
-      this.utilService.showToast('Please enter remark');
-    }
 
-    else
-    {
-    let responseData = await this.complaintService.resolved(this.complainStatus.id,this.amount,this.remark) as any;
+    let modal=this.modalController.create('MechanicComplaintResolveModalPage',{title:'Reslove Complaint',button:'Resolve',color:'resolved'});
+    modal.present();
+
+    modal.onWillDismiss(
+      async d=>{
+        if(d){
+         let responseData = await this.complaintService.resolved(this.complainStatus.id,d.amount,d.remark) as any;
     this.utilService.showToast(responseData.message).then(d=>{
       if(responseData.statusCode==200)
       {
@@ -120,6 +113,9 @@ export class MechanicComplainDetailsPage {
       }
     });
   }
+      }
+    )
+  
 
   }
 

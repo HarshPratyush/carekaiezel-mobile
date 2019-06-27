@@ -84,15 +84,7 @@
         <p>{{complainStatus.remarksByMechanic}}</p>
    </ion-item> 
 
-<ion-item  text-wrap *ngIf="complainStatus.status==inProgressStatus || complainStatus.status ==deferredStatus">
-    <ion-label  stacked>Amount Charged</ion-label>
-    <ion-input type="tel" [(ngModel)]="amount"></ion-input>
-  </ion-item>
 
-  <ion-item  text-wrap *ngIf="complainStatus.status==inProgressStatus || complainStatus.status ==deferredStatus">
-      <ion-label  stacked>Remark</ion-label>
-      <ion-textarea type="textarea" [(ngModel)]="remark"></ion-textarea>
-    </ion-item>
 
 
 
@@ -119,21 +111,21 @@
   <ion-row>
 
     <ion-col col-12  *ngIf="complainStatus.status==assignedStatus">
-        <button ion-button block class="footer_button" color="outForResoultion" (click)="outForResoultionSelect()">Out For Resolution</button>  
+        <button ion-button block class="footer_button" color="outforResolution" (click)="outForResoultionSelect()">Out For Resolution</button>  
     </ion-col>
 
     <ion-col col-12  *ngIf="complainStatus.status==outForResoultion">
-        <button ion-button block class="footer_button" (click)="inProgressStatusSelect()">In Progress</button>  
+        <button ion-button block class="footer_button" (click)="inProgressStatusSelect()" color="inprogress">In Progress</button>  
     </ion-col>
 
 
     <ion-col col-6  *ngIf="complainStatus.status==inProgressStatus || complainStatus.status ==deferredStatus">
-        <button ion-button block class="footer_button" (click)="deferredStatusSelect()">Deferred</button>  
+        <button ion-button block class="footer_button" (click)="deferredStatusSelect()" color="danger">Deferred</button>  
     </ion-col>
 
 
     <ion-col col-6  *ngIf="complainStatus.status==inProgressStatus || complainStatus.status == deferredStatus">
-        <button ion-button block class="footer_button" (click)="resolvedStatusSelect()">Resolved</button>  
+        <button ion-button block class="footer_button" (click)="resolvedStatusSelect()" color="resolved">Resolved</button>  
     </ion-col>
 
   </ion-row>
