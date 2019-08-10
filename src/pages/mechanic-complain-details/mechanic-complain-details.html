@@ -40,6 +40,13 @@
         <p>{{complainStatus.breakDownFrom}}</p>
       </ion-item>
 
+      
+      <ion-item text-wrap>
+          <ion-icon name="time" item-start large ></ion-icon>
+          <h2>Break Down Time</h2>
+          <p>{{complainStatus.breakDownAt ? time24HrTo12Hr(complainStatus.breakDownAt) : ''}}</p>
+        </ion-item>
+
       <ion-item text-wrap>
         <ion-icon name="cube"  item-start large></ion-icon>
           <h2>Category</h2>
@@ -110,7 +117,7 @@
 
   <ion-row>
 
-    <ion-col col-12  *ngIf="complainStatus.status==assignedStatus">
+    <ion-col col-12  *ngIf="complainStatus.status==assignedStatus || complainStatus.status ==deferredStatus ">
         <button ion-button block class="footer_button" color="outforResolution" (click)="outForResoultionSelect()">Out For Resolution</button>  
     </ion-col>
 
@@ -119,12 +126,12 @@
     </ion-col>
 
 
-    <ion-col col-6  *ngIf="complainStatus.status==inProgressStatus || complainStatus.status ==deferredStatus">
+    <ion-col col-6  *ngIf="complainStatus.status==inProgressStatus">
         <button ion-button block class="footer_button" (click)="deferredStatusSelect()" color="danger">Deferred</button>  
     </ion-col>
 
 
-    <ion-col col-6  *ngIf="complainStatus.status==inProgressStatus || complainStatus.status == deferredStatus">
+    <ion-col col-6  *ngIf="complainStatus.status==inProgressStatus">
         <button ion-button block class="footer_button" (click)="resolvedStatusSelect()" color="resolved">Resolved</button>  
     </ion-col>
 

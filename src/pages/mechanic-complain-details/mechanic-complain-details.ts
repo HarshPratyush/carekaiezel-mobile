@@ -119,6 +119,15 @@ export class MechanicComplainDetailsPage {
 
   }
 
+  time24HrTo12Hr(timeString){
+
+    let H = +timeString.substr(0, 2);
+    let h = H % 12 || 12;
+    let ampm = (H < 12 || H === 24) ? " AM" : " PM";
+  return ( h + timeString.substr(2, 3) + ampm);
+
+  }
+
 
   
 

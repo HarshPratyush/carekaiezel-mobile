@@ -14,12 +14,21 @@
       </ion-thumbnail>
     </ion-item>
 <ion-list>
+  
 <ion-item>
   <ion-label  stacked>Break Down From</ion-label>
   <ion-datetime [max]="currentDate" display-format="dd/MM/YYYY" picker-format="DD/MM/YYYY"  type="text" readonly [(ngModel)]="complaintSubmissionModel.breakDownFrom">
   </ion-datetime>
   <ion-icon name="calendar"  item-end large></ion-icon>
 </ion-item>
+
+<ion-item>
+  <ion-label stacked>Break Down At</ion-label>
+  <ion-datetime displayFormat="h:mm A" pickerFormat="h:mm A" type="text" readonly [(ngModel)]="complaintSubmissionModel.breakDownFromAt">
+  </ion-datetime>
+  <ion-icon name="time"  item-end large></ion-icon>
+</ion-item>
+
 
 <ion-item>
   <ion-label  stacked>Description</ion-label>
@@ -45,8 +54,8 @@
 </ion-item>
 
 <ion-item>
-  <ion-label  stacked>Adress</ion-label>
-  <ion-textarea type="textarea" [(ngModel)]="complaintSubmissionModel.adress"></ion-textarea>
+  <ion-label  stacked>Address</ion-label>
+  <ion-textarea type="textarea" [(ngModel)]="complaintSubmissionModel.address"></ion-textarea>
 </ion-item>
 
 <ion-item>

@@ -39,4 +39,13 @@ export class ComplainDetailsPage {
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
   }
+
+  time24HrTo12Hr(timeString){
+
+    let H = +timeString.substr(0, 2);
+    let h = H % 12 || 12;
+    let ampm = (H < 12 || H === 24) ? " AM" : " PM";
+  return ( h + timeString.substr(2, 3) + ampm);
+
+  }
 }

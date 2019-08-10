@@ -24,13 +24,14 @@ export class RegisterComplaintPage {
   selectedCategory;
 
   complaintSubmissionModel:ComplaintSubmissionModel={
-    adress:'',
+    address:'',
     breakDownFrom:null,
     description:'',
     image:'',
     latitude:0,
     longitude:0,
-    product:0
+    product:0,
+    breakDownFromAt:null
   };
 
   currentDate:string;
@@ -132,6 +133,11 @@ export class RegisterComplaintPage {
     else if(!this.complaintSubmissionModel.product)
     {
       this.utilService.showToast('Please select a product')
+    }
+
+    else if(!this.complaintSubmissionModel.address)
+    {
+      this.utilService.showToast('Please provide address');
     }
 
     else if(!this.complaintSubmissionModel.latitude)

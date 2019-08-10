@@ -1,8 +1,9 @@
 interface ComplaintSubmissionModel{
     image:string,
     breakDownFrom:Date,
+    breakDownFromAt:Date,
     description:string,
-    adress:string,
+    address:string,
     latitude:number,
     longitude:number,
     product:number;

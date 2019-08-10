@@ -41,6 +41,13 @@
         <p>{{complainStatus.breakDownFrom}}</p>
       </ion-item>
 
+      <ion-item text-wrap>
+          <ion-icon name="time" item-start large ></ion-icon>
+          <h2>Break Down Time</h2>
+          <p>{{complainStatus.breakDownAt ? time24HrTo12Hr(complainStatus.breakDownAt) : ''}}</p>
+        </ion-item>
+
+      
 
 
       <ion-item text-wrap>

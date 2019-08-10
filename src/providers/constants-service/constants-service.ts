@@ -46,4 +46,6 @@ export class ConstantsServiceProvider {
 
   public get GET_ALL_PRODUCT(){return 'getAllProducts'}
 
+  public get CHANGE_PASSWORD(){return 'changePassword'}
+
 }

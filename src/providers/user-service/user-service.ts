@@ -93,4 +93,20 @@ export class UserServiceProvider {
       }
     }
 
+    async changePassword(changePassword:ChangePasswordModel){
+
+      
+      try{
+      
+     let response = await this.http.post(this.constants.API_GATEWAY+this.constants.CHANGE_PASSWORD,changePassword).toPromise() as any;
+     this.utilService.showToast(response);
+     return true;
+    }
+      catch(error){
+        this.utilService.showToast(error.error);
+        return false;
+      }
+
+    }
+
 }

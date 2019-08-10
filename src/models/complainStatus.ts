@@ -20,6 +20,7 @@ interface ComplainStatus{
     attachment:number,
     productName:string,
     categoryName:string,
-    customerDetails
+    customerDetails,
+    breakDownAt
 
 }

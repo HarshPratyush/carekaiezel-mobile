@@ -10,4 +10,5 @@ interface AssignedComplaintStatus
     remarksByMechanic:string,
     breakDownFrom:string,
     customerDetails:ProfieModel,
+    breakDownAt
 }
