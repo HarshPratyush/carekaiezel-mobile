@@ -109,4 +109,33 @@ export class UserServiceProvider {
 
     }
 
+    async sendOtp(emailId)
+    {
+      try{
+        let response = await this.http.get(this.constants.API_GATEWAY+this.constants.SEND_OTP+emailId).toPromise() as any;
+        this.utilService.showToast(response);
+        return true;
+      }
+      catch(error){
+        this.utilService.showToast(error.error);
+        return false;
+      }
+    }
+
+    async resetPassword(resetPassword:ResetPassword){
+
+      
+      try{
+      
+     let response = await this.http.post(this.constants.API_GATEWAY+this.constants.RESET_PASSWORD,resetPassword).toPromise() as any;
+     this.utilService.showToast(response);
+     return true;
+    }
+      catch(error){
+        this.utilService.showToast(error.error);
+        return false;
+      }
+
+    }
+
 }

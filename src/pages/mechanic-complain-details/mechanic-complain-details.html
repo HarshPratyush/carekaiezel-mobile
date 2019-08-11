@@ -119,7 +119,7 @@
 
     <ion-col col-12  *ngIf="complainStatus.status==assignedStatus || complainStatus.status ==deferredStatus ">
         <button ion-button block class="footer_button" color="outforResolution" (click)="outForResoultionSelect()">Out For Resolution</button>  
-    </ion-col>
+    </ion-col>\
 
     <ion-col col-12  *ngIf="complainStatus.status==outForResoultion">
         <button ion-button block class="footer_button" (click)="inProgressStatusSelect()" color="inprogress">In Progress</button>  

@@ -48,4 +48,8 @@ export class ConstantsServiceProvider {
 
   public get CHANGE_PASSWORD(){return 'changePassword'}
 
+  public get SEND_OTP(){return 'anynomus/sendOtp?userName='}
+
+  public get RESET_PASSWORD(){return 'anynomus/forgotPassword'}
+
 }

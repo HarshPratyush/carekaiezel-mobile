@@ -61,4 +61,9 @@ export class LoginPage {
     }
   }
   }
+
+  goToResetPassword(){
+    this.navCtrl.push('ResetPasswordPage');
+
+  }
 }
