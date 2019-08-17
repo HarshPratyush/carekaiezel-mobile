@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "672434291943",
+    "firebase_url": "https://care-kaizel.firebaseio.com",
+    "project_id": "care-kaizel",
+    "storage_bucket": "care-kaizel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672434291943:android:e0c97a1d8e7dce8a",
+        "android_client_info": {
+          "package_name": "com.kaizel.carekaizelmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672434291943-7lf4fo344sc4787egc7crcjrla41ed39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz93to4AXif9h9x52Q5Vr0c7rj_gDd0pA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672434291943-7lf4fo344sc4787egc7crcjrla41ed39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

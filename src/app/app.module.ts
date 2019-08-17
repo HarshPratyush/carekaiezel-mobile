@@ -14,6 +14,7 @@ import { ComplainStatusProvider } from '../providers/complain-status/complain-st
 import { CallNumber } from '@ionic-native/call-number';
 import { HttpInterceptorProvider } from '../providers/http-interceptor/http-interceptor';
 import { Camera } from '@ionic-native/camera';
+import { FCM } from '@ionic-native/fcm';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { Camera } from '@ionic-native/camera';
     CallNumber,
     HttpInterceptorProvider,
     Camera,
-    {provide:HTTP_INTERCEPTORS,useClass:HttpInterceptorProvider,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass:HttpInterceptorProvider,multi:true},
+    FCM
     
   ]
 })

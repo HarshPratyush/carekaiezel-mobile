@@ -4,6 +4,7 @@ import { ConstantsServiceProvider } from '../constants-service/constants-service
 import { NewUserModel } from '../../models/newUserModel';
 import { URLSearchParams } from '@angular/http';
 import { UtilServiceProvider } from '../util-service/util-service';
+import { FCM } from '@ionic-native/fcm';
 
 /*
   Generated class for the UserServiceProvider provider.
@@ -14,7 +15,8 @@ import { UtilServiceProvider } from '../util-service/util-service';
 @Injectable()
 export class UserServiceProvider {
 
-  constructor(public http: HttpClient,private constants:ConstantsServiceProvider,private utilService:UtilServiceProvider) {
+  constructor(public http: HttpClient,private constants:ConstantsServiceProvider,
+    private utilService:UtilServiceProvider,private fcm: FCM) {
   }
 
 
@@ -62,6 +64,7 @@ export class UserServiceProvider {
      localStorage.setItem(this.constants.ACCESS_TOKEN,tokens.access_token);
      localStorage.setItem(this.constants.REFRESH_TOKEN,tokens.refresh_token);
      localStorage.setItem(this.constants.USER_DETAILS,JSON.stringify(userDetails));
+     this.initToken();
      return true;
     }
     catch (error){
@@ -136,6 +139,28 @@ export class UserServiceProvider {
         return false;
       }
 
+    }
+
+    initToken(){
+      this.fcm.getToken().then(token => {
+        this.registerToken(token);
+      });
+      
+      this.fcm.onNotification().subscribe(data => {
+        if(data.wasTapped){
+          console.log("Received in background");
+        } else {
+          console.log("Received in foreground");
+        };
+      });
+      
+      this.fcm.onTokenRefresh().subscribe(token => {
+        this.registerToken(token);
+      });
+    }
+
+    registerToken(token){
+ this.http.post(this.constants.API_GATEWAY+this.constants.REGISTER_TOKEN,token).toPromise().then(d=>{});
     }
 
 }

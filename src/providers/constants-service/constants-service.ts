@@ -13,9 +13,7 @@ export class ConstantsServiceProvider {
   constructor(public http: HttpClient) {
   }
 
-  // public  get API_GATEWAY(){return 'http://care.kaizelengineers.com/carekaizel-bkend/'}
-
-  public  get API_GATEWAY(){return 'http://localhost:8080/care-kaizel/'}
+  public  get API_GATEWAY(){return 'http://care.kaizelengineers.com/carekaizel-bkend/'}
 
   public get USER_ROLES_URL(){return 'anynomus/getAllRole'};
 
@@ -51,5 +49,7 @@ export class ConstantsServiceProvider {
   public get SEND_OTP(){return 'anynomus/sendOtp?userName='}
 
   public get RESET_PASSWORD(){return 'anynomus/forgotPassword'}
+
+  public get REGISTER_TOKEN(){return 'registerToken'}
 
 }

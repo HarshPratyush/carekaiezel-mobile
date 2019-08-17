@@ -35,7 +35,14 @@ ion-input{
 }
 .new-user{
   text-align: center;
-  margin: 2em;
+  // margin: 2em;
+  text-decoration: underline;;
+  cursor:pointer;
+}
+
+.forgot-pass{
+  text-align: center;
+  margin-top: 1em;
   text-decoration: underline;;
   cursor:pointer;
 }
