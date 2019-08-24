@@ -47,11 +47,11 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     if(page.component!='Logout')
     {
-      await this.userService.registerToken(null);
     this.nav.setRoot(page.component);
     }
     else
     {
+      await this.userService.registerToken(null);
       localStorage.clear();
       this.nav.setRoot('LoginPage');
     }
